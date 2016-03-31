@@ -1,0 +1,40 @@
+<h1>New match</h1>
+
+<h2>Please enter relevant info for match</h2>
+<%= form_for @match do |f| %>
+
+  <p>
+    <%= f.label :redAtt %><br>
+    <%= f.text_field :redAtt %>
+  </p>
+ 
+  <p>
+    <%= f.label :redDef %><br>
+    <%= f.text_area :redDef %>
+  </p>
+
+  <p>
+    <%= f.label :blueAtt %><br>
+    <%= f.text_area :blueAtt %>
+  </p>
+
+  <p>
+    <%= f.label :blueDef %><br>
+    <%= f.text_area :blueDef %>
+  </p>
+
+  <p>
+    <%= f.label :redGoal %><br>
+    <%= f.text_area :redGoal %>
+  </p>
+
+  <p>
+    <%= f.label :blueGoal %><br>
+    <%= f.text_area :blueGoal %>
+  </p>
+ 
+  <p>
+    <%= f.submit %>
+  </p>
+ 
+<% end %>
