@@ -5,3 +5,19 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+
+player_list = [
+	["Toh Weiqing", "WQ"],
+	["Soh Yu Ming", "SYM"],
+	["Benny Ou", "BO"],
+	["Brian Koh", "BK"],
+	["Fong Li Heng", "FLH"],
+	["Eugene Chow", "EC"],
+	["Soedarsono", "SD"],
+	["Evelyn Lee", "EL"],
+	["Ben Leong", "BL"],
+	["Luo Yanjie", "LY"],
+	["Abel Tay", "AT"]
+]
+
