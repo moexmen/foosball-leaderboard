@@ -1,23 +1,23 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+def rand_gen
+	1 + rand(180)
+end
 
+=begin
+	points = 3 * wins + 1 * loses
+	wRatio = win/win + lose
+=end
 
-player_list = [
-	["Toh Weiqing", "WQ"],
-	["Soh Yu Ming", "SYM"],
-	["Benny Ou", "BO"],
-	["Brian Koh", "BK"],
-	["Fong Li Heng", "FLH"],
-	["Eugene Chow", "EC"],
-	["Soedarsono", "SD"],
-	["Evelyn Lee", "EL"],
-	["Ben Leong", "BL"],
-	["Luo Yanjie", "LY"],
-	["Abel Tay", "AT"]
-]
-
+10.times do |i|
+	player_id = i
+	actual_pid = (i + 1).to_s
+	wins = rand_gen
+	loses = rand_gen
+	points = 3 * wins + 1 * loses
+	goals = rand_gen
+	wRatio = wins.fdiv(wins + loses)
+	display_wRatio = sprintf "%.10f", wRatio
+	pullUps = rand_gen
+	
+	Score.create(player_id: actual_pid, wins: wins, loses: loses, points: points, 
+		goals: goals, wRatio: display_wRatio, pullUps: pullUps)
+end

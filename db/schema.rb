@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160331061159) do
+ActiveRecord::Schema.define(version: 20160401062723) do
 
   create_table "matches", force: :cascade do |t|
     t.integer  "redAtt"
@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 20160331061159) do
     t.integer  "pullUps",    null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "player_id",  null: false
   end
 
 end
