@@ -1,5 +1,6 @@
 class MatchesController < ApplicationController
   def index
+    active_tab
     @matches = Match.all
   end
 
@@ -39,6 +40,10 @@ class MatchesController < ApplicationController
     @match.destroy
 
     redirect_to matches_path
+  end
+
+  def active_tab
+    @active = 3
   end
 
   private

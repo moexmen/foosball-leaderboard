@@ -1,0 +1,26 @@
+<div class="menu bottom-line">
+  <div class="v-center">
+    <ul>
+      <% if @active == 1 %>
+        <li class="active">
+      <% else %>
+        <li>
+      <% end %>
+        <a href="/players">PLAYERS</a></li>
+
+      <% if @active == 2 %>
+        <li class="active">
+      <% else %>
+        <li>
+      <% end %>
+      <a href="/scores">LEADERBOARD</a></li>
+
+      <% if @active == 3 %>
+        <li class="active">
+      <% else %>
+        <li>
+      <% end %>
+      <a href="/matches">MATCHES</a></li>
+    </ul>
+  </div>
+</div>

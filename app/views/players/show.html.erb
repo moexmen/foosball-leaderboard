@@ -1,11 +1,11 @@
-<h1>Players</h1>
+<h1 class="title">PROFILE</h1>
 
 <h2>Profile</h2>
 <p>
   <strong>Name:</strong>
   <%= @player.name %>
 </p>
- 
+
 <p>
   <strong>Alias:</strong>
   <%= @player.alias %>
@@ -14,7 +14,7 @@
 <p>
   <strong>Matches:</strong>
 </p>
- 
+
 <%= link_to 'Edit', edit_player_path(@player) %>
 <%= link_to 'Delete', player_path(@player),
               method: :delete,

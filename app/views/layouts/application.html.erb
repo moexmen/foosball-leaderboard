@@ -1,14 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>FoosballLeaderboard</title>
+  <title>ESTL Foosball</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <!-- Header -->
+  <div class="header bottom-line">
+    <%= image_tag("foosball.svg", id: "foosball-logo") %>
+  </div>
 
-<%= yield %>
+  <%= render partial: 'layouts/menu_bar' %>
 
+  <!-- End of Header -->
+  <div class="page">
+    <%= yield %>
+  </div>
 </body>
 </html>
