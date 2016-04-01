@@ -1,0 +1,30 @@
+<h1>Showing all recent matches</h1>
+
+<%= link_to 'Add Match', new_match_path %>
+<br>
+<br>
+
+<% @matches.each do |match| %>
+    <strong>MATCH ID: <%= match.id %></strong>
+    <br>
+    Red atk :<%= match.redAtt %>
+    <br>
+    Red def :<%= match.redDef %>
+    <br>
+    Red goal :<%= match.redGoal %>
+    <br>
+    Blue atk:<%= match.blueAtt %>
+    <br>
+    Blue def :<%= match.blueDef %>
+    <br>
+    Blue goal :<%= match.blueGoal %>
+    <br>
+    Winner :<%= match.winner %>
+    <br>
+    <%= link_to 'Edit', edit_match_path(match) %>
+    <br>
+    <%= link_to 'Delete', match_path(match),
+        method: :delete,
+        data: { confirm: 'Are you sure?' }%>
+    <br>
+<% end %>
