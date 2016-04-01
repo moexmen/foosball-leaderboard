@@ -1,0 +1,22 @@
+<h1>Players</h1>
+
+<h2>Profile</h2>
+<p>
+  <strong>Name:</strong>
+  <%= @player.name %>
+</p>
+ 
+<p>
+  <strong>Alias:</strong>
+  <%= @player.alias %>
+</p>
+
+<p>
+  <strong>Matches:</strong>
+</p>
+ 
+<%= link_to 'Edit', edit_player_path(@player) %>
+<%= link_to 'Delete', player_path(@player),
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %>
+<%= link_to 'Back', players_path %>

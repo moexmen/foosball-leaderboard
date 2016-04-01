@@ -1,0 +1,26 @@
+<header>
+  <style type="text/css">
+    th, td {
+    padding: 15px;
+    text-align: left;
+  }
+  </style>
+</header>
+
+<h1>All Players</h1>
+<%= link_to 'Add New Player', new_player_path %>
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Alias</th>
+    <th colspan="3"></th>
+  </tr>
+ 
+  <% @players.each do |player| %>
+    <tr>
+      <td><%= player.name %></td>
+      <td><%= player.alias %></td>
+      <td><%= link_to 'View Profile', player_path(player) %></td>
+    </tr>
+  <% end %>
+</table>

@@ -1,0 +1,18 @@
+<h1>Players</h1>
+
+<h2>Add new player</h2>
+<%= form_for :player, url: players_path do |f| %>
+	<p>
+		<%= f.label :name %><br>
+		<%= f.text_field :name %>
+	</p>
+
+	<p>
+		<%= f.label :alias %><br>
+		<%= f.text_field :alias %>
+	</p>
+
+	<p>
+		<%= f.submit %>
+	</p>
+<% end %>
