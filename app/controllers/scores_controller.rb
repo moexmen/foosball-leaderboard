@@ -1,6 +1,7 @@
 class ScoresController < ApplicationController
   def index
-    @scores = sort_by_wins
+    # @scores = sort_by_wins
+    @scores = Score.all
     @players = Player.all
   end
 
