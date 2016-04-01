@@ -21,4 +21,10 @@
     <br>
     Winner :<%= match.winner %>
     <br>
+    <%= link_to 'Edit', edit_match_path(match) %>
+    <br>
+    <%= link_to 'Delete', match_path(match),
+        method: :delete,
+        data: { confirm: 'Are you sure?' }%>
+    <br>
 <% end %>
