@@ -12,10 +12,8 @@ class MatchesController < ApplicationController
     # 0 = red
     # 1 = blue
 
-    game_winner = decide_winner(match_params[:redGoal], match_params[:blueGoal])
-    @match = Match.new(:redAtt => match_params[:redAtt], :redDef => match_params[:redDef], :redGoal => match_params[:redGoal],
-                       :blueAtt => match_params[:blueAtt], :blueDef => match_params[:blueDef], :blueGoal => match_params[:blueGoal],
-                       :winner => game_winner)
+    # game_winner = decide_winner(match_params[:redGoal], match_params[:blueGoal])
+    @match = Match.new(match_params)
 
     if @match.save
       # successful validations
