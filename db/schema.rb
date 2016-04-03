@@ -18,19 +18,20 @@ ActiveRecord::Schema.define(version: 20160402122345) do
     t.integer  "redDef"
     t.integer  "blueAtt"
     t.integer  "blueDef"
-    t.integer  "redGoal",              null: false
-    t.integer  "blueGoal",             null: false
-    t.integer  "winner",     limit: 1, null: false
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+    t.integer  "redGoal",    null: false
+    t.integer  "blueGoal",   null: false
+    t.string   "winner",     null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "player_matches", force: :cascade do |t|
-    t.integer  "player_id",  null: false
-    t.integer  "match_id",   null: false
-    t.string   "team",       null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "player_id",            null: false
+    t.integer  "match_id",             null: false
+    t.string   "team",                 null: false
+    t.string   "position",   limit: 3, null: false
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
   end
 
   create_table "players", force: :cascade do |t|
