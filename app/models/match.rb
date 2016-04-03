@@ -23,13 +23,14 @@ class Match < ActiveRecord::Base
 
   before_update do
       self.winner = get_winner
-      puts "[SERVER] Match #{self.id} is edited at #{self.updated_at}"
+
+      # remove old match record
+      player_matches_arr = PlayerMatch.where(:match_id => self.id)
+      player_matches_arr.each { |player_match| Score.remove_match(self.id, player_match) }
   end
 
   after_update do
     # update playerMatch records
-    puts '@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@READHERE'
-
     player_hash = [
         self.redAtt, self.redDef, self.blueAtt, self.blueDef
     ]
@@ -39,6 +40,7 @@ class Match < ActiveRecord::Base
       pm.update(match_id: self.id, player_id: player_hash[index], team:pm.team, position: pm.position)
     end
 
+    puts "[SERVER] Match #{self.id} is edited at #{self.updated_at}"
   end
 
   def get_winner

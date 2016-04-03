@@ -7,6 +7,15 @@ class PlayerMatch < ActiveRecord::Base
     match = Match.find(self.match_id)
     score = Score.where(player_id: self.player_id).take!
 
+    puts 'ADDING MATCH'
+    puts 'SCORE ID: ' + score.id.to_s
+    puts 'WINS: ' + score.wins.to_s
+    puts 'LOSES: ' + score.loses.to_s
+    puts 'POINTS: ' + score.points.to_s
+    puts 'GOALS: ' + score.goals.to_s
+    puts 'PULLUPS' + score.pullUps.to_s
+    puts 'WRATIO' + score.wRatio.to_s
+
     # update wins and points
     (match.winner == team) ? score.wins += 1 : score.loses += 1
     (match.winner == team) ? score.points += 3 : score.points += 1
@@ -24,6 +33,15 @@ class PlayerMatch < ActiveRecord::Base
 
     # save scoreboard
     score.save
+
+    puts 'AFTER ADDING MATCH MATCH'
+    puts 'SCORE ID: ' + score.id.to_s
+    puts 'WINS: ' + score.wins.to_s
+    puts 'LOSES: ' + score.loses.to_s
+    puts 'POINTS: ' + score.points.to_s
+    puts 'GOALS: ' + score.goals.to_s
+    puts 'PULLUPS' + score.pullUps.to_s
+    puts 'WRATIO' + score.wRatio.to_s
 
     puts "[SERVER] Updated scoreboard of player #{self.player_id}"
   end
