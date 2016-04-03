@@ -7,7 +7,7 @@ class CreateMatches < ActiveRecord::Migration
       t.column :blueDef, :integer
       t.column :redGoal, :integer
       t.column :blueGoal, :integer
-      t.column :winner, :integer, :limit => '1'
+      t.column :winner, :char, :limit => '1'
       t.timestamps null: false
     end
 
