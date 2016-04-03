@@ -1,7 +1,4 @@
 class Match < ActiveRecord::Base
-  # For winners
-  # 0 = red
-  # 1 = blue
 
   before_create do
     self.winner = get_winner
@@ -9,29 +6,20 @@ class Match < ActiveRecord::Base
   end
 
   after_create do
-    red_att_score = Score.where(player_id: redAtt).take!
-    red_def_score = Score.where(player_id: redDef).take!
-    blue_att_score = Score.where(player_id: blueAtt).take!
-    blue_def_score = Score.where(player_id: blueDef).take!
-    red_score_list = [red_att_score, red_def_score]
-    blue_score_list = [blue_att_score, blue_def_score]
+    # TODO: generate new records to player_match table
+    player_team_hash = {
+        :red => [redAtt, redDef],
+        :blue => [blueAtt, blueDef]
+    }
 
-    # update wins and loses
-    if self.winner == 0
-      red_score_list.each { |score| score.wins += 1 }
-      blue_score_list.each { |score| score.loses += 1}
-    else
-      red_score_list.each { |score| score.loses += 1 }
-      blue_score_list.each { |score| score.wins += 1}
+    player_team_hash.each do |key, player_team|
+      player_team.each do |item|
+        # generate record for player_match
+        PlayerMatch.create(match_id: id, player_id: item, team:key )
+      end
     end
 
-    # update goals
-    red_score_list.each { |score| score.goals += self.redGoal }
-    blue_score_list.each { |score| score.goals += self.blueGoal }
 
-    red_score_list.each { |score| score.save }
-    blue_score_list.each { |score| score.save }
-    puts "[SERVER] Updated scoreboards for #{self.id}"
   end
 
   before_update do
