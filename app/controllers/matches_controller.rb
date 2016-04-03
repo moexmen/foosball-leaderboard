@@ -14,6 +14,7 @@ class MatchesController < ApplicationController
 
   def create
     @match = Match.new(match_params)
+    # @match.get_additional_params(match_additional_params)
 
     if @match.save
       # successful validations
@@ -43,7 +44,12 @@ class MatchesController < ApplicationController
 
   private
   def match_params
-    params.require(:match).permit(:redAtt, :redDef, :blueAtt, :blueDef, :redGoal, :blueGoal, )
+    params.require(:match).permit(:redAtt, :blueAtt, :redDef, :blueDef, :redGoal, :blueGoal,)
   end
+
+  # private
+  # def match_additional_params
+  #   params.require(:match).permit(:redAtt, :blueAtt, :redDef, :blueDef,)
+  # end
 
 end
