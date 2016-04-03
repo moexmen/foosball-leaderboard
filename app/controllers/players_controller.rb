@@ -5,6 +5,7 @@ class PlayersController < ApplicationController
 
 	def show
 		@player = Player.find(params[:id])
+    @profile_details = Player.get_profile_json(params[:id])
 	end
 
 	def new

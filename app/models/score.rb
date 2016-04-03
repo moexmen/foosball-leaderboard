@@ -1,4 +1,7 @@
+require 'json'
+
 class Score < ActiveRecord::Base
+  belongs_to :Player
   def self.remove_match(match_id, player_match)
     match = Match.find(match_id)
     score = Score.where(:player_id => player_match.player_id).take!
@@ -47,4 +50,18 @@ class Score < ActiveRecord::Base
     puts "[SERVER] Updated scoreboard of player #{player_match.player_id}"
   end
 
+  def self.get_score_json(player_id)
+    score = Score.where(:player_id => player_id).take!
+    score_hash = {
+        :wins => score.wins,
+        :loses => score.loses,
+        :points => score.points,
+        :goals => score.goals,
+        :win_ratio => score.wRatio,
+        :pull_ups => score.pullUps
+    }
+
+    puts JSON.pretty_generate(score_hash)
+    return JSON.pretty_generate(score_hash)
+  end
 end

@@ -7,5 +7,17 @@ class Player < ActiveRecord::Base
     puts "[SERVER] Generated new score record for player #{self.id}"
   end
 
+  def self.get_profile_json(player_id)
+    match_arr_json = Match.get_matches_json(player_id)
+    score_json = Score.get_score_json(player_id)
+
+    profile_json = {
+        :score_details => score_json,
+        :match_details => match_arr_json
+    }
+    puts JSON.pretty_generate(profile_json)
+    return JSON.pretty_generate(profile_json)
+  end
+
 
 end
