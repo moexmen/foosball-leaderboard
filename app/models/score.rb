@@ -24,8 +24,8 @@ class Score < ActiveRecord::Base
     puts 'LOSES: ' + score.loses.to_s
     puts 'POINTS: ' + score.points.to_s
     puts 'GOALS: ' + score.goals.to_s
-    puts 'PULLUPS' + score.pullUps.to_s
-    puts 'WRATIO' + score.wRatio.to_s
+    puts 'PULLUPS: ' + score.pullUps.to_s
+    puts 'WRATIO: ' + score.wRatio.to_s
 
     score.save
     puts "[SERVER] Removed match #{match.id} from player #{player_match.player_id}'s scoreboard"

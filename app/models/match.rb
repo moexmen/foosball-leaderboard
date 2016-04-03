@@ -23,10 +23,7 @@ class Match < ActiveRecord::Base
 
   before_update do
       self.winner = get_winner
-
-      # remove old match record
-      player_matches_arr = PlayerMatch.where(:match_id => self.id)
-      player_matches_arr.each { |player_match| Score.remove_match(self.id, player_match) }
+      remove_match_from_scoreboard
   end
 
   after_update do
@@ -41,6 +38,20 @@ class Match < ActiveRecord::Base
     end
 
     puts "[SERVER] Match #{self.id} is edited at #{self.updated_at}"
+  end
+
+  before_destroy do
+    remove_match_from_scoreboard
+
+    # destroy match object and playerMatch objects
+    player_matches_arr = PlayerMatch.where(:match_id => self.id)
+    player_matches_arr.each { |player_match| player_match.destroy }
+  end
+
+  def remove_match_from_scoreboard
+    # remove this match instance from scoreboard
+    player_matches_arr = PlayerMatch.where(:match_id => self.id)
+    player_matches_arr.each { |player_match| Score.remove_match(self.id, player_match) }
   end
 
   def get_winner
