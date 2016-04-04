@@ -16,6 +16,7 @@
 
  * {
    font-family: Lato;
+   font-weight: 400;
    letter-spacing: 0.6px;
  }
 
@@ -29,6 +30,11 @@
    height: 100%;
    overflow-y: hidden;
  }
+
+ table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
 
  .bottom-line {
    border-bottom: 0.5px solid #BBBBBB;
@@ -118,5 +124,22 @@
        padding: 6px 26px 6px 26px;
        text-decoration: none;
      }
+   }
+ }
+
+ .credits {
+   text-align: center;
+   margin-top: 30px;
+   margin-bottom: 10px;
+   font-size: 1em;
+
+   span {
+     color: #777777;
+     font-weight: 300;
+   }
+
+   .team {
+     color: #F3B11C;
+     font-weight: 400;
    }
  }
