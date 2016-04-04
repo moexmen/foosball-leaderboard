@@ -1,3 +1,26 @@
 // Place all the styles related to the players controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@import 'variables';
+
+.player {
+  width: 100%;
+  margin-bottom: 7px;
+
+  thead {
+    tr {
+      background: $grey;
+      color: $black;
+    }
+  }
+
+  tbody {
+    tr {
+      background: $light-grey;
+
+      td {
+        width: 25%;
+      }
+    }
+  }
+}
