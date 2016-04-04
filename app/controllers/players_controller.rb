@@ -4,6 +4,7 @@ class PlayersController < ApplicationController
 	def index
 		active_tab
 		@players = Player.all
+		@scores = Score.all
 	end
 
 	def show

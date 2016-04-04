@@ -1,5 +1,5 @@
 <h1 class="title">RANKINGS</h1>
-<span class="text12 gray">SORT BY</span>
+<span class="text12 dark-grey">SORT BY</span>
 <select class="sort selector" name="sort">
   <option value="wins">Wins</option>
   <option value="points">Points</option>
@@ -34,7 +34,7 @@
     <% @scores.each.with_index do |score, i| %>
       <tr class="spacer"></tr>
         <tr>
-          <td class="left-align light-grey"><%= i + 1 %></td>
+          <td class="left-align dark-grey"><%= i + 1 %></td>
           <td class="left-align"><%= @players[score.player_id - 1].alias %></td>
           <td><%= score.wins %></td>
           <td><%= score.loses %></td>
