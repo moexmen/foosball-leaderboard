@@ -3,7 +3,7 @@ class Player < ActiveRecord::Base
 
   after_create do
     # generate score record
-    Score.create(wins: 0, loses: 0, points: 0, goals: 0, wRatio: 0, pullUps: 0, player_id: self.id)
+    # Score.create(wins: 0, loses: 0, points: 0, goals: 0, wRatio: 0, pullUps: 0, player_id: self.id)
     puts "[SERVER] Generated new score record for player #{self.id}"
   end
 
@@ -15,9 +15,9 @@ class Player < ActiveRecord::Base
         :score_details => score_json,
         :match_details => match_arr_json
     }
-    puts JSON.pretty_generate(profile_json)
-    return JSON.pretty_generate(profile_json)
-  end
 
+    full_json = JSON.pretty_generate(profile_json)
+    return full_json
+  end
 
 end

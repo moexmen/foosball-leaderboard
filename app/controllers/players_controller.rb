@@ -1,3 +1,5 @@
+require 'json'
+
 class PlayersController < ApplicationController
 	def index
 		@players = Player.all
@@ -5,8 +7,20 @@ class PlayersController < ApplicationController
 
 	def show
 		@player = Player.find(params[:id])
-    @profile_details = Player.get_profile_json(params[:id])
-	end
+    profile_details = Player.get_profile_json(params[:id])
+    json_dict = JSON.parse(profile_details)
+
+    @score_details = JSON.parse(json_dict['score_details'])
+    @match_details = JSON.parse(json_dict['match_details'])
+  end
+
+  def format(hash)
+    output = Hash.new
+    hash.each do |key, value|
+      output[key] = cleanup(value)
+    end
+    output
+  end
 
 	def new
 		@player = Player.new
