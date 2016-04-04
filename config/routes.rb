@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   get 'scores/index'
+  get 'scores/update_score', as: 'update_score'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

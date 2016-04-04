@@ -1,11 +1,10 @@
 <h1 class="title">RANKINGS</h1>
 <span class="text12 gray">SORT BY</span>
-<select class="sort selector" name="sort">
-  <option value="wins">Wins</option>
-  <option value="points">Points</option>
-  <option value="goals">Goals</option>
-  <option value="pullups">Pull-ups</option>
+<div id="sort_score">
+<select class="sort selector" name="sort_score" id="sort_score_id">
+  <%= raw @html_option_string %>
 </select>
+</div>
 
 <table>
   <tr>
@@ -19,20 +18,33 @@
     <th colspan="3"></th>
   </tr>
 
+
   <% @scores.each.with_index do |score, i| %>
       <tr>
-        <td><%= i + 1 %></td>
-        <td><%= @players[score.player_id - 1].name %></td>
-        <td><%= score.wins %></td>
-        <td><%= score.loses %></td>
-        <td><%= score.points %></td>
-        <td><%= score.goals %></td>
-        <td><%= score.pullUps %></td>
-      </tr>
+      <td><%= i + 1 %></td>
+      <td><%= @players[score.player_id - 1].name %></td>
+      <td><%= score.wins %></td>
+      <td><%= score.loses %></td>
+      <td><%= score.points %></td>
+      <td><%= score.goals %></td>
+      <td><%= score.pullUps %></td>
+    </tr>
   <% end %>
-
-
 </table>
 
 <%= link_to 'Matches', matches_path %>
 <%= link_to 'Players', players_path %>
+
+<script>
+  $(document).ready(function() {
+    $('#sort_score_id').change(function() {
+      $.ajax({
+        url: "<%= update_score_path %>",
+        data: {
+            score_sort: $("#sort_score_id option:selected").text()
+        },
+        dataType: "script"
+      });
+    });
+  });
+</script>
