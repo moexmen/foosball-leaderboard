@@ -3,21 +3,18 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 @import 'variables';
 
-.match-tbl {
-  width: 100%;
-  background: #F7F7F7;
-  font-size: 17px;
-  font-weight: 400;
-  margin-bottom: 7px;
-  // th { padding: 5px 5px 5px 5px; }
-
-  .left   { text-align: left }
-  .right  { text-align: right }
-  .match-score {
-    position: relative;
-    top: 50%;
-    font-size: 30px;
-  }
+.match-tbl { width: 100%;
+             background: #F7F7F7;
+             font-size: 17px;
+             font-weight: 400;
+             margin-bottom: 7px;
+  .column { width: 32% }
+  .left   { text-align: left; }
+  .right  { text-align: right; }
+  .match-score {  position: relative;
+                  text-align: center;
+                  top: 50%;
+                  font-size: 30px; }
   .role { padding: 10px 7px 0px 7px;
           font-size: 10px;
           font-weight: 900;
@@ -28,4 +25,14 @@
   .red    { background: #FF6680; }
   .blue-text  { color: #66CCFF }
   .red-text   { color: #FF6680 }
+  .grey-bar { text-align: right; }
+  .match-btn { height: 20px;
+               background: #E8E8E8;
+    .left { float: left;
+            width: 50%; }
+    .right { float: right;
+             width: 50%; }
+    #edit   { width: 12px; }
+    #delete { width: 12px; }
+  }
 }

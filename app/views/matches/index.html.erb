@@ -6,37 +6,87 @@
 <% @matches.each do |match| %>
   <table class="match-tbl">
   	<tbody>
-    <tr>
-  		<td class="thin blue" rowspan="4"></td>
-  		<td class="role left blue-text">ATTACK</td>
-      <td class ="match-score" rowspan="4">
-        <span class="blue-text">
-          <%= match.blueGoal %>
-        </span>-<span class="red-text">
-          <%= match.redGoal %>
-          &nbsp;&nbsp;&nbsp;&nbsp;
-        </span>
-      </td>
-      <td class="role right red-text">ATTACK</td>
-  		<td class="thin red" rowspan="4"></td>
-    </tr>
-  	<tr>
-      <td class="player left"><%= match.blueAtt %></td>
-      <td class="player right"><%= match.redAtt %></td>
-    </tr>
-    <tr>
-      <td class="role left blue-text">DEFENSE</td>
-      <td class="role right red-text">DEFENSE</td>
-    </tr>
-    <tr>
-      <td class="player left"><%= match.blueDef %></td>
-      <td class="player right"><%= match.redDef %></td>
-    </tr>
+      <tr>
+        <% if match.winner=='b' %>
+      		<td class="thin blue" rowspan="4"></td>
+      		<td class="role left column blue-text">ATTACK</td>
+        <% else %>
+          <td class="thin red" rowspan="4"></td>
+          <td class="role left column red-text">ATTACK</td>
+        <% end %>
+
+        <td class ="match-score column" rowspan="4">
+        <% if match.winner=='b' %>
+          <span class="blue-text">
+            <%= match.blueGoal %>
+          </span>-<span class="red-text">
+            <%= match.redGoal %>
+            &nbsp;&nbsp;
+          </span>
+        <% else %>
+          <span class="red-text">
+            <%= match.redGoal %>
+          </span>-<span class="blue-text">
+            <%= match.blueGoal %>
+            &nbsp;&nbsp;
+          </span>
+        <% end %>
+        </td>
+
+        <% if match.winner=='b' %>
+          <td class="role right column red-text">ATTACK</td>
+      		<td class="thin red" rowspan="4"></td>
+        <% else %>
+          <td class="role right column blue-text">ATTACK</td>
+      		<td class="thin blue" rowspan="4"></td>
+        <% end %>
+      </tr>
+    	<tr>
+        <% if match.winner=='b' %>
+          <td class="player left"><%= match.blueAtt %></td>
+          <td class="player right"><%= match.redAtt %></td>
+        <% else %>
+          <td class="player left"><%= match.redAtt %></td>
+          <td class="player right"><%= match.blueAtt %></td>
+        <% end %>
+      </tr>
+      <tr>
+        <% if match.winner=='b' %>
+          <td class="role left blue-text">DEFENSE</td>
+          <td class="role right red-text">DEFENSE</td>
+        <% else %>
+          <td class="role left red-text">DEFENSE</td>
+          <td class="role right blue-text">DEFENSE</td>
+        <% end %>
+      </tr>
+      <tr>
+        <% if match.winner=='b' %>
+          <td class="player left"><%= match.blueDef %></td>
+          <td class="player right"><%= match.redDef %></td>
+        <% else %>
+          <td class="player left"><%= match.redDef %></td>
+          <td class="player right"><%= match.blueDef %></td>
+        <% end %>
+      </tr>
+      <tr class="grey-bar">
+        <td class="match-btn" colspan="5">
+          <span class="left">
+            <center>
+              <%= link_to image_tag("arrow-down.svg", id: "edit"), edit_match_path(match) %>
+            </center>
+          </span>
+          <span class="right">
+            <center><%= link_to image_tag("arrow-down.svg", id: "delete"), match_path(match),
+                method: :delete,
+                data: { confirm: 'Are you sure?' }%></center>
+          </span>
+        </td>
+      </tr>
   	</tbody>
   </table>
 <% end %>
 
-<% @matches.each do |match| %>
+<!-- <% @matches.each do |match| %>
     <strong>MATCH ID: <%= match.id %></strong>
     <br>
     Red atk :<%= match.redAtt %>
@@ -59,4 +109,4 @@
         method: :delete,
         data: { confirm: 'Are you sure?' }%>
     <br>
-<% end %>
+<% end %> -->
