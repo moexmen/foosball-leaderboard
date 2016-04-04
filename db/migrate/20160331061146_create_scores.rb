@@ -7,8 +7,9 @@ class CreateScores < ActiveRecord::Migration
       t.column :goals, :integer
       t.column :wRatio, :float
       t.column :pullUps, :integer
+      t.column :player_id, :integer
       t.timestamps null: false
-      end
+    end
 
       change_column_null :scores, :wins, false
       change_column_null :scores, :loses, false
@@ -16,6 +17,7 @@ class CreateScores < ActiveRecord::Migration
       change_column_null :scores, :goals, false
       change_column_null :scores, :wRatio, false
       change_column_null :scores, :pullUps, false
-    
+      change_column_null :scores, :player_id, false
+      add_foreign_key :scores, column: :player_id
   end
 end

@@ -22,7 +22,7 @@
   <% @scores.each.with_index do |score, i| %>
       <tr>
         <td><%= i + 1 %></td>
-        <td><%= @players[score.player_id].alias %></td>
+        <td><%= @players[score.player_id - 1].name %></td>
         <td><%= score.wins %></td>
         <td><%= score.loses %></td>
         <td><%= score.points %></td>
