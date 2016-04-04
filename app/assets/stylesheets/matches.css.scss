@@ -2,5 +2,28 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 .match-tbl {
-  
+  width: 100%;
+  background: #F7F7F7;
+  font-size: 17px;
+  font-weight: 400;
+  margin-bottom: 7px;
+  // th { padding: 5px 5px 5px 5px; }
+
+  .left   { text-align: left }
+  .right  { text-align: right }
+  .match-score {
+    position: relative;
+    top: 50%;
+    font-size: 30px;
+  }
+  .role { padding: 10px 7px 0px 7px;
+          font-size: 10px;
+          font-weight: 900;
+          font-family: Lato; }
+  .player { padding: 0px 7px 10px 7px; }
+  .thin   { width: 5px; }
+  .blue   { background: #66CCFF; }
+  .red    { background: #FF6680; }
+  .blue-text  { color: #66CCFF }
+  .red-text   { color: #FF6680 }
 }

@@ -4,6 +4,39 @@
 </div>
 
 <% @matches.each do |match| %>
+  <table class="match-tbl">
+  	<tbody>
+    <tr>
+  		<td class="thin blue" rowspan="4"></td>
+  		<td class="role left blue-text">ATTACK</td>
+      <td class ="match-score" rowspan="4">
+        <span class="blue-text">
+          <%= match.blueGoal %>
+        </span>-<span class="red-text">
+          <%= match.redGoal %>
+          &nbsp;&nbsp;&nbsp;&nbsp;
+        </span>
+      </td>
+      <td class="role right red-text">ATTACK</td>
+  		<td class="thin red" rowspan="4"></td>
+    </tr>
+  	<tr>
+      <td class="player left"><%= match.blueAtt %></td>
+      <td class="player right"><%= match.redAtt %></td>
+    </tr>
+    <tr>
+      <td class="role left blue-text">DEFENSE</td>
+      <td class="role right red-text">DEFENSE</td>
+    </tr>
+    <tr>
+      <td class="player left"><%= match.blueDef %></td>
+      <td class="player right"><%= match.redDef %></td>
+    </tr>
+  	</tbody>
+  </table>
+<% end %>
+
+<% @matches.each do |match| %>
     <strong>MATCH ID: <%= match.id %></strong>
     <br>
     Red atk :<%= match.redAtt %>
