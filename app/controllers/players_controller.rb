@@ -2,6 +2,7 @@ require 'json'
 
 class PlayersController < ApplicationController
 	def index
+		active_tab
 		@players = Player.all
 	end
 
@@ -39,7 +40,7 @@ class PlayersController < ApplicationController
 
 	def update
 		@player = Player.find(params[:id])
- 
+
 	  @player.update(player_params)
 	  redirect_to @player
 	end
@@ -47,8 +48,12 @@ class PlayersController < ApplicationController
 	def destroy
 	  @player = Player.find(params[:id])
 	  @player.destroy
-	 
+
 	  redirect_to players_path
+	end
+
+	def active_tab
+		@active = 1
 	end
 
 private
