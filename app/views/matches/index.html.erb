@@ -1,8 +1,7 @@
-<span class="title"></h1>MATCHES</h1>
-<!-- <%= link_to '<button>ADD</button>'.html_safe, new_match_path %></span> -->
-<a href="/matches/new"><button class="button-text">ADD</button></a>
-</span>
-<br>
+<div class="title-bar">
+  <span class="title">MATCHES</span>
+  <a href="/matches/new" class="btn">ADD</a>
+</div>
 
 <% @matches.each do |match| %>
     <strong>MATCH ID: <%= match.id %></strong>
