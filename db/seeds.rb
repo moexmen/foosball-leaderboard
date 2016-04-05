@@ -41,6 +41,10 @@ end
 	display_wRatio = sprintf "%.10f", wRatio
 	pullUps = rand_gen(180)
 
+		Score.create(player_id: actual_pid, wins: wins, loses: loses, points: points,
+			goals: goals, wRatio: display_wRatio, pullUps: pullUps)
+end
+
 # # Scoreboard random seeding
 # 11.times do |i|
 # 	player_id = i
