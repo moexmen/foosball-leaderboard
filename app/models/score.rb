@@ -19,7 +19,7 @@ class Score < ActiveRecord::Base
 
     # update wRatio
     new_win_ratio = score.wins.fdiv(score.wins + score.loses)
-    score.wRatio = sprintf '.10f', new_win_ratio
+    score.wRatio = sprintf('%.10f', new_win_ratio)
 
     score.save
     puts "[SERVER] Removed match #{match.id} from player #{player_match.player_id}'s scoreboard"
@@ -43,7 +43,7 @@ class Score < ActiveRecord::Base
 
     # update wRatio
     new_win_ratio = score.wins.fdiv(score.wins + score.loses)
-    score.wRatio = sprintf '.10f', new_win_ratio
+    score.wRatio = sprintf('%.10f', new_win_ratio)
 
     # save scoreboard
     score.save
