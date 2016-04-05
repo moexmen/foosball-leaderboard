@@ -14,10 +14,6 @@
 ActiveRecord::Schema.define(version: 20160402122345) do
 
   create_table "matches", force: :cascade do |t|
-    t.integer  "redAtt"
-    t.integer  "redDef"
-    t.integer  "blueAtt"
-    t.integer  "blueDef"
     t.integer  "redGoal",    null: false
     t.integer  "blueGoal",   null: false
     t.string   "winner",     null: false

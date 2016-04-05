@@ -1,7 +1,7 @@
 require 'json'
 
 class Score < ActiveRecord::Base
-  belongs_to :Player
+  belongs_to :player
   def self.remove_match(match_id, player_match)
     match = Match.find(match_id)
     score = Score.where(:player_id => player_match.player_id).take!

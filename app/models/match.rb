@@ -1,4 +1,10 @@
 class Match < ActiveRecord::Base
+  has_many :player_matches
+  attr_accessor :red_att
+  attr_accessor :red_def
+  attr_accessor :blue_att
+  attr_accessor :blue_def
+
   # TODO: Handle single player for team
   before_create do
     self.winner = get_winner
@@ -8,8 +14,8 @@ class Match < ActiveRecord::Base
   after_create do
     # generate new records to player_match table
     player_team_hash = {
-        :red => [self.redAtt, self.redDef],
-        :blue => [self.blueAtt, self.blueDef]
+        :red => [self.red_att, self.red_def],
+        :blue => [self.blue_att, self.blue_def]
     }
 
     player_team_hash.each do |key, player_team|
@@ -29,7 +35,7 @@ class Match < ActiveRecord::Base
   after_update do
     # update playerMatch records
     player_hash = [
-        self.redAtt, self.redDef, self.blueAtt, self.blueDef
+        self.red_att, self.red_def, self.blue_att, self.blue_def
     ]
 
     update_pm_arr = PlayerMatch.where(:match_id => self.id)
@@ -58,7 +64,7 @@ class Match < ActiveRecord::Base
     self.redGoal > self.blueGoal ? 'r' : 'b'
   end
 
-  def self.get_matches_json(player_id)
+  def self.get_player_matches_json(player_id)
     # return json of matches
     matches = []
     single_pm_records = PlayerMatch.where(:player_id => player_id)
@@ -66,6 +72,29 @@ class Match < ActiveRecord::Base
       matches.push(Match.where(:id => pm.match_id).take!)
     end
 
+    match_json_arr = get_json_from_matches_array(matches)
+
+    puts JSON.pretty_generate(match_json_arr)
+    return JSON.pretty_generate(match_json_arr)
+  end
+
+  def self.get_all_matches_json
+    return JSON.pretty_generate(get_json_from_matches_array(Match.all))
+  end
+
+  def self.get_match_json(match)
+    return JSON.pretty_generate(get_json_from_matches_array(match))
+  end
+
+  def add_matches(red_att, red_def, blue_att, blue_def)
+    self.red_att = red_att
+    self.red_def = red_def
+    self.blue_att = blue_att
+    self.blue_def = blue_def
+  end
+
+  # helper
+  def self.get_json_from_matches_array(matches)
     match_json_arr = []
     matches.each do |match|
       match_pm_records = PlayerMatch.where(:match_id => match.id)
@@ -91,9 +120,9 @@ class Match < ActiveRecord::Base
 
       match_json_arr.push(json_hash)
     end
-
-    puts JSON.pretty_generate(match_json_arr)
-    return JSON.pretty_generate(match_json_arr)
+    puts 'MATCH_JSON_ARR'
+    puts match_json_arr
+    return match_json_arr
   end
 
 end
