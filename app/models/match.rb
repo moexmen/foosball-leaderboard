@@ -96,4 +96,8 @@ class Match < ActiveRecord::Base
     return JSON.pretty_generate(match_json_arr)
   end
 
+  def self.get_created_date 
+    match.created_at.strftime('%d %^b %Y')
+  end
+
 end
