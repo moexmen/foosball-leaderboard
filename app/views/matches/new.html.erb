@@ -1,39 +1,39 @@
 <h1 class="title">ADD MATCH</h1>
 
-<%= form_tag(matches_path, :method=>'post') do %>
-    <p>
-      <label>redAtt</label><br>
-      <%= text_field_tag :redAtt %>
-    </p>
+<div class="form">
+  <%= form_tag(match_path, :method=>'put') do %>
+    <!-- Red Team -->
+    <div class="row">
+      <span class="form-label">RED ATTACK</span>
+      <span><%= text_field_tag :redAtt, class: 'form-text' %></span>
+    </div>
+    <div class="row">
+      <span class="form-label">RED DEFENSE</span>
+      <span><%= text_field_tag :redDef, class: 'form-text' %></span>
+    </div>
+    <!-- Blue Team -->
+    <div class="row">
+      <span class="form-label">BLUE ATTACK</span>
+      <span><%= text_field_tag :blueAtt, class: 'form-text' %></span>
+    </div>
+    <div class="row">
+      <span class="form-label">BLUE DEFENSE</span>
+      <span><%= text_field_tag :blueDef, class: 'form-text' %></span>
+    </div>
 
-    <p>
-      <label>redDef</label><br>
-      <%= text_field_tag :redDef %>
-    </p>
+    <!-- Score -->
+    <div class="row">
+      <span class="form-label">RED SCORE</span>
+      <span><%= text_field_tag :redGoal, class: 'form-text' %></span>
+    </div>
+    <div class="row">
+      <span class="form-label">BLUE SCORE</span>
+      <span><%= text_field_tag :blueGoal, class: 'form-text' %></span>
+    </div>
 
-    <p>
-      <label>blueAtt</label><br>
-      <%= text_field_tag :blueAtt %>
-    </p>
-
-    <p>
-      <label>blueDef</label><br>
-      <%= text_field_tag :blueDef %>
-    </p>
-
-    <p>
-      <label>redGoal</label><br>
-      <%= text_field_tag :redGoal %>
-    </p>
-
-    <p>
-      <label>blueGoal</label><br>
-      <%= text_field_tag :blueGoal %>
-    </p>
-
-    <%= submit_tag 'Submit' %>
-<% end %>
-
-
-
-<%= link_to 'Back', matches_path %>
+    <div class="buttons">
+			<%= submit_tag 'ADD', class: 'form-btn black-btn' %>
+      <%= link_to 'CANCEL', matches_path, class: 'form-btn grey-btn align-center' %>
+		</div>
+  <% end %>
+</div>

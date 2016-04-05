@@ -1,37 +1,39 @@
 <h1 class="title">EDIT MATCH</h1>
 
-<%= form_tag(match_path, :method=>'put') do %>
-    <p>
-      <label>redAtt</label><br>
-      <%= text_field_tag :redAtt, @match_detail['red_atk'] %>
-    </p>
+<div class="form">
+  <%= form_tag(match_path, :method=>'put') do %>
+    <!-- Red Team -->
+    <div class="row">
+      <span class="form-label">RED ATTACK</span>
+      <span><%= text_field_tag :redAtt, @match_detail['red_atk'], class: 'form-text' %></span>
+    </div>
+    <div class="row">
+      <span class="form-label">RED DEFENSE</span>
+      <span><%= text_field_tag :redDef, @match_detail['red_def'], class: 'form-text' %></span>
+    </div>
+    <!-- Blue Team -->
+    <div class="row">
+      <span class="form-label">BLUE ATTACK</span>
+      <span><%= text_field_tag :blueAtt, @match_detail['blue_atk'], class: 'form-text' %></span>
+    </div>
+    <div class="row">
+      <span class="form-label">BLUE DEFENSE</span>
+      <span><%= text_field_tag :blueDef, @match_detail['blue_def'], class: 'form-text' %></span>
+    </div>
 
-    <p>
-      <label>redDef</label><br>
-      <%= text_field_tag :redDef, @match_detail['red_def'] %>
-    </p>
+    <!-- Score -->
+    <div class="row">
+      <span class="form-label">RED SCORE</span>
+      <span><%= text_field_tag :redGoal, @match.redGoal, class: 'form-text' %></span>
+    </div>
+    <div class="row">
+      <span class="form-label">BLUE SCORE</span>
+      <span><%= text_field_tag :blueGoal, @match.blueGoal, class: 'form-text' %></span>
+    </div>
 
-    <p>
-      <label>blueAtt</label><br>
-      <%= text_field_tag :blueAtt, @match_detail['blue_atk'] %>
-    </p>
-
-    <p>
-      <label>blueDef</label><br>
-      <%= text_field_tag :blueDef, @match_detail['blue_def'] %>
-    </p>
-
-    <p>
-      <label>redGoal</label><br>
-      <%= text_field_tag :redGoal, @match.redGoal %>
-    </p>
-
-    <p>
-      <label>blueGoal</label><br>
-      <%= text_field_tag :blueGoal, @match.blueGoal %>
-    </p>
-
-    <%= submit_tag 'Submit' %>
-<% end %>
-
-<%= link_to 'Back', matches_path %>
+    <div class="buttons">
+			<%= submit_tag 'EDIT', class: 'form-btn black-btn' %>
+      <%= link_to 'CANCEL', matches_path, class: 'form-btn grey-btn align-center' %>
+		</div>
+  <% end %>
+</div>

@@ -4,9 +4,11 @@ class PlayersController < ApplicationController
 	def index
 		active_tab
 		@players = Player.all
+		@scores = Score.all
 	end
 
 	def show
+		active_tab
 		@player = Player.find(params[:id])
     profile_details = Player.get_profile_json(params[:id])
     json_dict = JSON.parse(profile_details)
@@ -24,6 +26,7 @@ class PlayersController < ApplicationController
   end
 
 	def new
+		active_tab
 		@player = Player.new
 	end
 
@@ -35,6 +38,7 @@ class PlayersController < ApplicationController
 	end
 
 	def edit
+		active_tab
 	  @player = Player.find(params[:id])
 	end
 

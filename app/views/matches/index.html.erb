@@ -1,21 +1,94 @@
-<span class="title"></h1>MATCHES</h1>
-<!-- <%= link_to '<button>ADD</button>'.html_safe, new_match_path %></span> -->
-<a href="/matches/new"><button class="button-text">ADD</button></a>
-</span>
-<br>
-
+<div class="title-bar">
+  <span class="title">MATCHES</span>
+  <a href="/matches/new" class="btn">ADD</a>
+</div>
 
 <% @matches_details.each_with_index do |match, index| %>
-    <% match.each do |key, value| %>
-      <%= key %>: <%= value %><br>
-    <% end %>
-    <br>
+  <table class="match-tbl">
+    <!-- Date -->
+    <thead>
+      <tr>
+        <th colspan="5"><%= match['date'] %></th>
+      </tr>
+    </thead>
+    <!-- Match Details -->
+  	<tbody>
+      <tr>
+        <% if match['winner']=='b' %>
+      		<td class="thin bg-blue" rowspan="4"></td>
+      		<td class="role column blue-text">ATTACK</td>
+        <% else %>
+          <td class="thin bg-red" rowspan="4"></td>
+          <td class="role column red-text">ATTACK</td>
+        <% end %>
 
-    <%= link_to 'Edit', edit_match_path(@matches[index]) %>
-    <br>
-    <%= link_to 'Delete', match_path(@matches[index]),
-                method: :delete,
-                data: { confirm: 'Are you sure?' }%>
+        <td class="match-score column" rowspan="4">
+          <% if match['winner']=='b' %>
+            <span class="blue-text">
+              <%= match['blueGoal'] %>
+            </span>-<span class="red-text">
+              <%= match['redGoal'] %>
+              &nbsp;&nbsp;
+            </span>
+          <% else %>
+            <span class="red-text">
+              <%= match['red_goal'] %>
+            </span>-<span class="blue-text">
+              <%= match['blue_goal'] %>
+              &nbsp;&nbsp;
+            </span>
+          <% end %>
+        </td>
 
-    <br>
+        <% if match['winner']=='b' %>
+          <td class="role align-right column red-text">ATTACK</td>
+      		<td class="thin bg-red" rowspan="4"></td>
+        <% else %>
+          <td class="role align-right column blue-text">ATTACK</td>
+      		<td class="thin bg-blue" rowspan="4"></td>
+        <% end %>
+      </tr>
+    	<tr>
+        <% if match['winner']=='b' %>
+          <td class="player"><%= match['blue_atk'] %></td>
+          <td class="player align-right"><%= match['red_atk'] %></td>
+        <% else %>
+          <td class="player"><%= match['red_atk'] %></td>
+          <td class="player align-right"><%= match['blue_atk'] %></td>
+        <% end %>
+      </tr>
+      <tr>
+        <% if match['winner']=='b' %>
+          <td class="role blue-text">DEFENSE</td>
+          <td class="role align-right red-text">DEFENSE</td>
+        <% else %>
+          <td class="role red-text">DEFENSE</td>
+          <td class="role align-right blue-text">DEFENSE</td>
+        <% end %>
+      </tr>
+      <tr>
+        <% if match['winner']=='b' %>
+          <td class="player"><%= match['blue_def'] %></td>
+          <td class="player align-right"><%= match['red_def'] %></td>
+        <% else %>
+          <td class="player"><%= match['red_def'] %></td>
+          <td class="player align-right"><%= match['blue_def'] %></td>
+        <% end %>
+      </tr>
+  	</tbody>
+  </table>
+
+  <!-- Buttons -->
+  <table class="match-btn">
+    <tbody>
+      <tr class="options">
+        <td>
+          <%= link_to image_tag('edit.svg', class: 'edit-icon'), edit_match_path(@matches[index]) %>
+        </td>
+        <td>
+          <%= link_to image_tag('delete.svg', class: 'delete-icon'), match_path(@matches[index]), method: :delete, data: { confirm: 'Are you sure?' }  %>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 <% end %>

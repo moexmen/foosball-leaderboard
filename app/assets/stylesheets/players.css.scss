@@ -1,3 +1,64 @@
 // Place all the styles related to the players controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@import 'variables';
+
+// Index
+.player {
+  width: 100%;
+  margin-bottom: 7px;
+
+  thead {
+    tr {
+      background: $grey;
+      color: $black;
+
+      th {
+        font-size: 1.3em;
+        padding: 5px 10px;
+      }
+    }
+  }
+
+  tbody {
+    tr {
+      background: $light-grey;
+      font-size: 15px;
+
+      td {
+        padding: 7px 0;
+        letter-spacing: 0.7px;
+      }
+    }
+
+    .bar {
+      padding: 0;
+      width: 0.7%;
+    }
+
+    .spacer {
+      background: $light-grey;
+
+      td {
+        padding: 0;
+        height: 5px;
+      }
+    }
+
+    .stat {
+      width: 28%;
+      padding-right: 10px;
+    }
+
+    .score {
+      width: 21%;
+      padding-left: 10px;
+    }
+
+    .options {
+      font-size: 0;
+      background: $grey;
+      text-align: center;
+    }
+  }
+}

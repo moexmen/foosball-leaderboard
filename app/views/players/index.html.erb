@@ -1,26 +1,50 @@
-<!-- <header>
-  <style type="text/css">
-    th, td {
-    padding: 15px;
-    text-align: left;
-  }
-  </style>
-</header> -->
+<div class="title-bar">
+  <span class="title">PLAYERS</span>
+  <a href="/players/new" class="btn">ADD</a>
+</div>
 
-<h1 class="title">PLAYERS</h1>
-<%= link_to 'Add New Player', new_player_path %>
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Alias</th>
-    <th colspan="3"></th>
-  </tr>
-
-  <% @players.each do |player| %>
-    <tr>
-      <td><%= player.name %></td>
-      <td><%= player.alias %></td>
-      <td><%= link_to 'View Profile', player_path(player) %></td>
-    </tr>
+<!-- Loops and displays all players -->
+<% @players.each do |player| %>
+  <%= link_to (player_path(player)) do %>
+    <div>
+      <table class="player">
+        <!-- Player name & alias -->
+        <thead>
+          <tr>
+            <th class="align-left" colspan="5"><%= player.name.upcase %></th>
+            <th class="align-right light"><%= player.alias %></th>
+          </tr>
+        </thead>
+        <!-- Player stats -->
+        <tbody>
+          <tr class="spacer">
+            <td colspan="6"></td>
+          </tr>
+          <tr><!-- Wins & Goals -->
+            <td class="dark-grey align-right stat">WINS</td>
+            <td class="bar bg-blue" rowspan="3"></td>
+            <td class="black align-left pad-left score"><%= player.score.wins %></td>
+            <td class="dark-grey align-right stat">GOALS</td>
+            <td class="bar bg-red" rowspan="3"></td>
+            <td class="black align-left pad-left score"><%= player.score.goals %></td>
+          </tr>
+          <tr><!-- Loses & Win Ratio -->
+            <td class="dark-grey align-right stat">LOSES</td>
+            <td class="black align-left pad-left score"><%= player.score.loses %></td>
+            <td class="dark-grey align-right stat">WIN&nbsp;RATIO</td>
+            <td class="black align-left pad-left score"><%= player.score.wRatio %></td>
+          </tr>
+          <tr><!-- Points & Pull-ups -->
+            <td class="dark-grey align-right stat">POINTS</td>
+            <td class="black align-left pad-left score"><%= player.score.points %></td>
+            <td class="dark-grey align-right stat">PULL-UPS</td>
+            <td class="black align-left pad-left score"><%= player.score.pullUps %></td>
+          </tr>
+          <tr class="spacer">
+            <td colspan="6"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   <% end %>
-</table>
+<% end %>

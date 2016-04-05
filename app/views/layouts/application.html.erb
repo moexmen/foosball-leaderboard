@@ -10,7 +10,7 @@
 <body>
   <!-- Header -->
   <div class="header bottom-line">
-    <%= image_tag("foosball.svg", id: "foosball-logo") %>
+    <%= image_tag('foosball.svg', id: 'foosball-logo') %>
   </div>
 
   <%= render partial: 'layouts/menu_bar' %>
@@ -18,6 +18,11 @@
   <!-- End of Header -->
   <div class="page">
     <%= yield %>
+  </div>
+
+  <div class="credits">
+    <span>A project by </span>
+    <span class="team">The Sweatshop</span>
   </div>
 </body>
 </html>

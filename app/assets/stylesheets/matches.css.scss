@@ -1,18 +1,81 @@
 // Place all the styles related to the matches controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-button {
-  /*adjust the roundness*/
-  float: right;
-  border-radius: 3px;
-  /*adjust height and width*/
-  height: 28px;
-  width: 80px;
-  /*change border colour*/
-  border:2px #777777 solid;
-  background-color: transparent;
-}
-.button-text {
-  font-size: 10px;
+@import 'variables';
+
+.match-tbl {
+  width: 100%;
+  font-size: 17px;
   font-weight: 400;
+
+  th {
+    text-align: right;
+    color: $dark_grey;
+    font-size: 10px;
+    font-weight: 700;
+  }
+
+  tbody {
+    tr {
+      background: $light-grey;
+
+      td {
+        padding: 7px 0;
+      }
+    }
+
+    .column {
+      width: 32%;
+    }
+
+    .match-score {
+      position: relative;
+      text-align: center;
+      top: 50%;
+      font-size: 30px;
+    }
+
+    .role {
+      padding: 10px 7px 0px 7px;
+      font-size: 10px;
+      font-weight: 900;
+      font-family: Lato;
+    }
+
+    .player {
+      padding: 0px 7px 10px 7px;
+    }
+
+    .thin {
+      width: 5px;
+    }
+
+    .blue-text {
+      color: $blue;
+    }
+
+    .red-text {
+      color: $red;
+    }
+  }
+}
+
+.match-btn {
+  width: 100%;
+  margin-bottom: 7px;
+
+  tbody {
+    tr {
+      td {
+        width: 50%;
+        padding: 7px 0;
+      }
+    }
+
+    .options {
+      font-size: 0;
+      background: $grey;
+      text-align: center;
+    }
+  }
 }

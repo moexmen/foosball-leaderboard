@@ -8,11 +8,13 @@ class MatchesController < ApplicationController
   end
 
   def new
+    active_tab
     @match = Match.new
   end
 
   def edit
     # called upon submitting GET request
+    active_tab
     @match = Match.find(params[:id])
     @match_detail = JSON.parse(Match.get_match_json(@match))
   end
@@ -20,6 +22,7 @@ class MatchesController < ApplicationController
   def create
     @match = Match.new(redGoal: match_params[:redGoal], blueGoal: match_params[:blueGoal], winner: match_params[:winner])
     update_players_for_match
+
     if @match.save
       # successful validations
       redirect_to matches_path
@@ -46,6 +49,7 @@ class MatchesController < ApplicationController
   end
 
   def destroy
+    active_tab
     @match = Match.find(params[:id])
     @match.destroy
 
