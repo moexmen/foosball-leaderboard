@@ -7,30 +7,40 @@
   <%= link_to (player_path(player)) do %>
     <div>
       <table class="player">
+        <!-- Player name & alias -->
         <thead>
           <tr>
-            <th colspan="3"><%= player.name %></th>
-            <th><%= player.alias %></th>
+            <th class="align-left" colspan="5"><%= player.name.upcase %></th>
+            <th class="align-right light"><%= player.alias %></th>
           </tr>
         </thead>
+        <!-- Player stats -->
         <tbody>
-          <tr>
-            <td class="dark-grey">WINS</td>
-            <td class="black"><%= @scores[index].wins %></td>
-            <td class="dark-grey">GOALS</td>
-            <td class="black"><%= @scores[index].goals %></td>
+          <tr class="spacer">
+            <td colspan="6"></td>
           </tr>
-          <tr>
-            <td class="dark-grey">LOSES</td>
-            <td class="black"><%= @scores[index].loses %></td>
-            <td class="dark-grey">WIN RATIO</td>
-            <td class="black"><%= @scores[index].wRatio %></td>
+          <tr><!-- Wins & Goals -->
+            <td class="dark-grey align-right stat">WINS</td>
+            <td class="bar bg-blue" rowspan="3"></td>
+            <td class="black align-left pad-left score"><%= @scores[index].wins %></td>
+            <td class="dark-grey align-right stat">GOALS</td>
+            <td class="bar bg-red" rowspan="3"></td>
+            <td class="black align-left pad-left score"><%= @scores[index].goals %></td>
           </tr>
-          <tr>
-            <td class="dark-grey">POINTS</td>
-            <td class="black"><%= @scores[index].points %></td>
-            <td class="dark-grey">PULL-UPS</td>
-            <td class="black"><%= @scores[index].pullUps %></td>
+          <tr><!-- Loses & Win Ratio -->
+            <td class="dark-grey align-right stat">LOSES</td>
+            <td class="black align-left pad-left score"><%= @scores[index].loses %></td>
+            <td class="dark-grey align-right stat">WIN&nbsp;RATIO</td>
+            <td class="black align-left pad-left score"><%= @scores[index].wRatio %></td>
+          </tr>
+          <tr><!-- Points & Pull-ups -->
+            <td class="dark-grey align-right stat">POINTS</td>
+            <td class="black align-left pad-left score"><%= @scores[index].points %></td>
+            <td class="dark-grey align-right stat">PULL-UPS</td>
+            <td class="black align-left pad-left score"><%= @scores[index].pullUps %></td>
+          </tr>
+          <tr class="spacer">
+            <td colspan="6"></td>
           </tr>
         </tbody>
       </table>

@@ -3,6 +3,10 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 @import 'variables';
 
+a {
+  text-decoration: none;
+}
+
 .player {
   width: 100%;
   margin-bottom: 7px;
@@ -11,6 +15,11 @@
     tr {
       background: $grey;
       color: $black;
+
+      th {
+        font-size: 1.3em;
+        padding: 5px 10px;
+      }
     }
   }
 
@@ -19,8 +28,35 @@
       background: $light-grey;
 
       td {
-        width: 25%;
+        font-size: 15px;
+        padding-top: 7px;
+        padding-bottom: 7px;
+        letter-spacing: 0.7px;
       }
+    }
+
+    .bar {
+      padding: 0;
+      width: 0.7%;
+    }
+
+    .spacer {
+      background: $light-grey;
+
+      td {
+        padding: 0;
+        height: 5px;
+      }
+    }
+
+    .stat {
+      width: 28%;
+      padding-right: 10px;
+    }
+
+    .score {
+      width: 21%;
+      padding-left: 10px;
     }
   }
 }

@@ -51,10 +51,10 @@ table {
 }
 
 .v-center {
- position: relative;
- top: 50%;
- -webkit-transform: translateY(-50%);
- transform: translateY(-50%);
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
 }
 
 .menu {
@@ -67,8 +67,8 @@ table {
 
  li {
    display: inline-block;
-   margin-left: 3%;
-   margin-right: 3%;
+   margin-left: 2%;
+   margin-right: 2%;
    font-size: 15px;
    color: $dark_grey;
    max-height: 100%;

@@ -15,3 +15,26 @@ $blue: #66CCFF;
 .dark-grey {
   color: $dark_grey;
 }
+
+// Alignment
+.align-left {
+  text-align: left;
+}
+
+.align-right {
+  text-align: right;
+}
+
+// Font
+.light {
+  font-weight: 300;
+}
+
+// Background
+.bg-blue {
+  background: $blue;
+}
+
+.bg-red {
+  background: $red;
+}
