@@ -1,5 +1,39 @@
 <h1 class="title">ADD MATCH</h1>
 
-<%= render 'form' %>
+<%= form_tag(matches_path, :method=>'post') do %>
+    <p>
+      <label>redAtt</label><br>
+      <%= text_field_tag :redAtt %>
+    </p>
+
+    <p>
+      <label>redDef</label><br>
+      <%= text_field_tag :redDef %>
+    </p>
+
+    <p>
+      <label>blueAtt</label><br>
+      <%= text_field_tag :blueAtt %>
+    </p>
+
+    <p>
+      <label>blueDef</label><br>
+      <%= text_field_tag :blueDef %>
+    </p>
+
+    <p>
+      <label>redGoal</label><br>
+      <%= text_field_tag :redGoal %>
+    </p>
+
+    <p>
+      <label>blueGoal</label><br>
+      <%= text_field_tag :blueGoal %>
+    </p>
+
+    <%= submit_tag 'Submit' %>
+<% end %>
+
+
 
 <%= link_to 'Back', matches_path %>

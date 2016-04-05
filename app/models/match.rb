@@ -83,7 +83,7 @@ class Match < ActiveRecord::Base
   end
 
   def self.get_match_json(match)
-    return JSON.pretty_generate(get_json_from_matches_array(match))
+    return JSON.pretty_generate(get_json_from_match(match))
   end
 
   def add_matches(red_att, red_def, blue_att, blue_def)
@@ -97,32 +97,34 @@ class Match < ActiveRecord::Base
   def self.get_json_from_matches_array(matches)
     match_json_arr = []
     matches.each do |match|
-      match_pm_records = PlayerMatch.where(:match_id => match.id)
-      # puts match_pm_records
-
-      # Setup json and append
-      red_atk = Player.find((match_pm_records.where(:position => 'atk', :team => 'r').take!).player_id).name
-      blue_atk = Player.find((match_pm_records.where(:position => 'atk', :team => 'b').take!).player_id).name
-      red_def = Player.find((match_pm_records.where(:position => 'def', :team => 'r').take!).player_id).name
-      blue_def = Player.find((match_pm_records.where(:position=> 'def', :team => 'b').take!).player_id).name
-
-      json_hash = {
-          :match_id => match.id,
-          :red_atk => red_atk,
-          :red_def => red_def,
-          :red_goal => match.redGoal,
-          :blue_atk => blue_atk,
-          :blue_def => blue_def,
-          :blue_goal => match.blueGoal,
-          :winner => match.winner,
-          :date => match.created_at.strftime('%d %^b %Y')
-      }
-
-      match_json_arr.push(json_hash)
+      match_json_arr.push(get_json_from_match(match))
     end
-    puts 'MATCH_JSON_ARR'
-    puts match_json_arr
     return match_json_arr
+  end
+
+  def self.get_json_from_match(match)
+    match_pm_records = PlayerMatch.where(:match_id => match.id)
+    # puts match_pm_records
+
+    # Setup json and append
+    red_atk = Player.find((match_pm_records.where(:position => 'atk', :team => 'r').take!).player_id).name
+    blue_atk = Player.find((match_pm_records.where(:position => 'atk', :team => 'b').take!).player_id).name
+    red_def = Player.find((match_pm_records.where(:position => 'def', :team => 'r').take!).player_id).name
+    blue_def = Player.find((match_pm_records.where(:position=> 'def', :team => 'b').take!).player_id).name
+
+    json_hash = {
+        :match_id => match.id,
+        :red_atk => red_atk,
+        :red_def => red_def,
+        :red_goal => match.redGoal,
+        :blue_atk => blue_atk,
+        :blue_def => blue_def,
+        :blue_goal => match.blueGoal,
+        :winner => match.winner,
+        :date => match.created_at.strftime('%d %^b %Y')
+    }
+
+    return json_hash
   end
 
 end

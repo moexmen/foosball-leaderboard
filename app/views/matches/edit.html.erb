@@ -1,5 +1,37 @@
 <h1 class="title">EDIT MATCH</h1>
 
-<%= render 'form' %>
+<%= form_tag(match_path, :method=>'put') do %>
+    <p>
+      <label>redAtt</label><br>
+      <%= text_field_tag :redAtt, @match_detail['red_atk'] %>
+    </p>
+
+    <p>
+      <label>redDef</label><br>
+      <%= text_field_tag :redDef, @match_detail['red_def'] %>
+    </p>
+
+    <p>
+      <label>blueAtt</label><br>
+      <%= text_field_tag :blueAtt, @match_detail['blue_atk'] %>
+    </p>
+
+    <p>
+      <label>blueDef</label><br>
+      <%= text_field_tag :blueDef, @match_detail['blue_def'] %>
+    </p>
+
+    <p>
+      <label>redGoal</label><br>
+      <%= text_field_tag :redGoal, @match.redGoal %>
+    </p>
+
+    <p>
+      <label>blueGoal</label><br>
+      <%= text_field_tag :blueGoal, @match.blueGoal %>
+    </p>
+
+    <%= submit_tag 'Submit' %>
+<% end %>
 
 <%= link_to 'Back', matches_path %>

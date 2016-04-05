@@ -20,7 +20,9 @@ class MatchesController < ApplicationController
   def edit
     # called upon submitting GET request
     @match = Match.find(params[:id])
-    @match_detail = Match.get_match_json(@match)
+    @match_detail = JSON.parse(Match.get_match_json(@match))
+    puts 'HELLO'
+    puts @match_detail
   end
 
   def create

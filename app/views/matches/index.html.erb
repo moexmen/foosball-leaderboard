@@ -4,27 +4,18 @@
 </span>
 <br>
 
-<% @matches.each do |match| %>
-    <strong>MATCH ID: <%= match.id %></strong>
+
+<% @matches_details.each_with_index do |match, index| %>
+    <% match.each do |key, value| %>
+      <%= key %>: <%= value %><br>
+    <% end %>
     <br>
-    Red atk :<%= match.redAtt %>
+
+    <%= link_to 'Edit', edit_match_path(@matches[index]) %>
     <br>
-    Red def :<%= match.redDef %>
-    <br>
-    Red goal :<%= match.redGoal %>
-    <br>
-    Blue atk:<%= match.blueAtt %>
-    <br>
-    Blue def :<%= match.blueDef %>
-    <br>
-    Blue goal :<%= match.blueGoal %>
-    <br>
-    Winner :<%= match.winner %>
-    <br>
-    <%= link_to 'Edit', edit_match_path(match) %>
-    <br>
-    <%= link_to 'Delete', match_path(match),
-        method: :delete,
-        data: { confirm: 'Are you sure?' }%>
+    <%= link_to 'Delete', match_path(@matches[index]),
+                method: :delete,
+                data: { confirm: 'Are you sure?' }%>
+
     <br>
 <% end %>
