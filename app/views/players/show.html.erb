@@ -42,12 +42,10 @@
     </tr>
     <tr class="options">
       <td colspan="3">
-          <%= link_to image_tag('edit.svg', id: 'edit-icon'), edit_player_path(@player) %>
+        <%= link_to image_tag('edit.svg', class: 'edit-icon'), edit_player_path(@player) %>
       </td>
       <td colspan="3">
-        <a href="#">
-          <%= link_to image_tag('delete.svg', id: 'delete-icon'), player_path(@player), method: :delete, data: { confirm: 'Are you sure?' }  %>
-        </a>
+        <%= link_to image_tag('delete.svg', class: 'delete-icon'), player_path(@player), method: :delete, data: { confirm: 'Are you sure?' }  %>
       </td>
     </tr>
   </tbody>

@@ -46,20 +46,20 @@ end
 # end
 
 # Scoreboard zero seeding (All scores set to 0)
-11.times do |i|
-	player_id = i
-	actual_pid = (i + 1).to_s
-	wins = 0
-	loses = 0
-	points = 3 * wins + 1 * loses
-	goals = 0
-	wRatio = wins.fdiv(wins + loses)
-	display_wRatio = sprintf "%.10f", wRatio
-	pullUps = 0
+# 11.times do |i|
+# 	player_id = i
+# 	actual_pid = (i + 1).to_s
+# 	wins = 0
+# 	loses = 0
+# 	points = 3 * wins + 1 * loses
+# 	goals = 0
+# 	wRatio = wins.fdiv(wins + loses)
+# 	display_wRatio = sprintf "%.10f", wRatio
+# 	pullUps = 0
 	
-	Score.create(player_id: actual_pid, wins: wins, loses: loses, points: points, 
-		goals: goals, wRatio: display_wRatio, pullUps: pullUps)
-end
+# 	Score.create(player_id: actual_pid, wins: wins, loses: loses, points: points, 
+# 		goals: goals, wRatio: display_wRatio, pullUps: pullUps)
+# end
 
 # Match random seeding 
 # 5.times do |i|

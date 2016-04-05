@@ -43,6 +43,7 @@ table {
   border-spacing: 0;
 }
 
+//Header
 .bottom-line {
   border-bottom: 0.5px solid #BBBBBB;
 }
@@ -149,7 +150,7 @@ table {
 
 // Form styling (Add and Edit)
 .form {
-  width: 92%;
+  width: 96%;
   margin-left: auto;
   margin-right: auto;
 
@@ -172,10 +173,11 @@ table {
     font-size: 15px;
     border-radius: 2px;
     height: 25px;
-    width: 200px;
+    width: 155px;
   }
 }
 
+// Form buttons
 .buttons {
   margin-top: 40px;
 
@@ -217,12 +219,12 @@ table {
 }
 
 // Icon styling
-#edit-icon {
+.edit-icon {
   width: 17px;
   cursor: pointer;
 }
 
-#delete-icon {
+.delete-icon {
   width: 15px;
   cursor: pointer;
 }

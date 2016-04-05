@@ -1,5 +1,40 @@
 <h1 class="title">ADD MATCH</h1>
 
-<%= render 'form' %>
+<div class="form">
+  <%= form_for :match, url: matches_path do |f| %>
+    <!-- Red Team -->
+    <div class="row">
+      <span class="form-label">RED ATTACK</span>
+      <span><%= f.text_field :redAtt, class: 'form-text' %></span>
+    </div>
+    <div class="row">
+      <span class="form-label">RED DEFENSE</span>
+      <span><%= f.text_field :redDef, class: 'form-text' %></span>
+    </div>
 
-<%= link_to 'Back', matches_path %>
+    <!-- Blue Team -->
+    <div class="row">
+      <span class="form-label">BLUE ATTACK</span>
+      <span><%= f.text_field :blueAtt, class: 'form-text' %></span>
+    </div>
+    <div class="row">
+      <span class="form-label">BLUE DEFENSE</span>
+      <span><%= f.text_field :blueDef, class: 'form-text' %></span>
+    </div>
+
+    <!-- Score -->
+    <div class="row">
+      <span class="form-label">RED SCORE</span>
+      <span><%= f.text_field :redGoal, class: 'form-text' %></span>
+    </div>
+    <div class="row">
+      <span class="form-label">BLUE SCORE</span>
+      <span><%= f.text_field :blueGoal, class: 'form-text' %></span>
+    </div>
+
+    <div class="buttons">
+			<%= f.submit 'ADD', class: 'form-btn black-btn' %>
+			<a href="/matches" class="form-btn grey-btn align-center">CANCEL</a>
+		</div>
+  <% end %>
+</div>
