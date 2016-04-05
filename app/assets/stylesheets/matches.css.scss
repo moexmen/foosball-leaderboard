@@ -3,11 +3,58 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 @import 'variables';
 
+.match-edit {
+  font: 14px Lato;
+  color: $dark_grey;
+
+  .btn {
+    background: $white;
+    font: 700 14px Lato;
+    color: $black;
+    line-height: normal;
+    vertical-align: middle;
+    letter-spacing: 1.6px;
+    border-radius: 1px;
+    width: 200px;
+    border: 2px solid $black;
+    margin: 24px 0px 0px 0px;
+    padding: 12px 80px 12px 80px;
+    text-decoration: none;
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background: $dark_grey;
+      color: $white;
+      -webkit-transition: all 0.3s ease;
+      transition: all 0.3s ease;
+    }
+  }
+
+  .txt_field {
+    color: $black;
+    float: right;
+    -webkit-appearance: none;
+    appearance: none;
+    border: 1px solid $dark_grey;
+    border-radius: 2px;
+    background:url(arrow-down.svg) no-repeat 95%;
+    background-size: 12px;
+    padding: 4px 4px 4px 10px;
+    margin-bottom: 5px;
+  }
+}
+
 .match-tbl { width: 100%;
              background: #F7F7F7;
              font-size: 17px;
              font-weight: 400;
              margin-bottom: 7px;
+  th { text-align: right;
+       color: $dark_grey;
+       background: $white;
+       font-size: 10px;
+       font-weight: 400; }
   .column { width: 32% }
   .left   { text-align: left; }
   .right  { text-align: right; }

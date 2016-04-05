@@ -1,37 +1,35 @@
 <%= form_for @match do |f| %>
+  <span class="match-edit">
+    <p>RED ATTACK
+      <%= f.text_field :redAtt, :class => 'txt_field' %>
+    </p>
 
-    <p>
-      <%= f.label :redAtt %><br>
-      <%= f.text_field :redAtt %>
+    <p>RED DEFENSE
+      <%= f.text_field :redDef, :class => 'txt_field' %>
+    </p>
+
+    <p>BLUE ATTACK
+      <%= f.text_field :blueAtt, :class => 'txt_field' %>
+    </p>
+
+    <p>BLUE DEFENSE
+      <%= f.text_field :blueDef, :class => 'txt_field' %>
+    </p>
+
+    <p>RED SCORE
+      <%= f.text_field :redGoal, :class => 'txt_field' %>
+    </p>
+
+    <p>BLUE SCORE
+      <%= f.text_field :blueGoal, :class => 'txt_field' %>
     </p>
 
     <p>
-      <%= f.label :redDef %><br>
-      <%= f.text_area :redDef %>
+      <center>
+        <%= f.submit 'EDIT', :class => 'btn' %>
+        <br><br><br>
+        <%= link_to 'CANCEL', matches_path, :class => 'btn' %>
+      </center>
     </p>
-
-    <p>
-      <%= f.label :blueAtt %><br>
-      <%= f.text_area :blueAtt %>
-    </p>
-
-    <p>
-      <%= f.label :blueDef %><br>
-      <%= f.text_area :blueDef %>
-    </p>
-
-    <p>
-      <%= f.label :redGoal %><br>
-      <%= f.text_area :redGoal %>
-    </p>
-
-    <p>
-      <%= f.label :blueGoal %><br>
-      <%= f.text_area :blueGoal %>
-    </p>
-
-    <p>
-      <%= f.submit %>
-    </p>
-
+  </span>
 <% end %>

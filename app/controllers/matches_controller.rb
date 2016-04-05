@@ -18,6 +18,11 @@ class MatchesController < ApplicationController
   def create
     @match = Match.new(match_params)
     # @match.get_additional_params(match_additional_params)
+    @time = []
+    @match.each do |match|
+      @time.push(match.get_created_date)
+      puts match.get_created_date
+    end
 
     if @match.save
       # successful validations

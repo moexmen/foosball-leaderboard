@@ -3,8 +3,15 @@
   <a href="/matches/new" class="btn">ADD</a>
 </div>
 
-<% @matches.each do |match| %>
+<% @matches.each_with_index do |match, index| %>
   <table class="match-tbl">
+    <thead>
+      <tr>
+        <th class="date-bar" colspan="5">
+            4 APR 2016
+        </th>
+      </tr>
+    </thead>
   	<tbody>
       <tr>
         <% if match.winner=='b' %>
@@ -15,7 +22,7 @@
           <td class="role left column red-text">ATTACK</td>
         <% end %>
 
-        <td class ="match-score column" rowspan="4">
+        <td class="match-score column" rowspan="4">
         <% if match.winner=='b' %>
           <span class="blue-text">
             <%= match.blueGoal %>
@@ -72,11 +79,11 @@
         <td class="match-btn" colspan="5">
           <span class="left">
             <center>
-              <%= link_to image_tag("arrow-down.svg", id: "edit"), edit_match_path(match) %>
+              <%= link_to image_tag("edit.svg", id: "edit"), edit_match_path(match) %>
             </center>
           </span>
           <span class="right">
-            <center><%= link_to image_tag("arrow-down.svg", id: "delete"), match_path(match),
+            <center><%= link_to image_tag("delete.svg", id: "delete"), match_path(match),
                 method: :delete,
                 data: { confirm: 'Are you sure?' }%></center>
           </span>
