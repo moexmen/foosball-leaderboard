@@ -86,7 +86,7 @@ class Match < ActiveRecord::Base
     return JSON.pretty_generate(get_json_from_match(match))
   end
 
-  def add_matches(red_att, red_def, blue_att, blue_def)
+  def add_players_for_match(red_att, red_def, blue_att, blue_def)
     self.red_att = red_att
     self.red_def = red_def
     self.blue_att = blue_att
