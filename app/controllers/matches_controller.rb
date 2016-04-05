@@ -5,11 +5,13 @@ class MatchesController < ApplicationController
   end
 
   def new
+    active_tab
     @match = Match.new
   end
 
   def edit
     # called upon submitting GET request
+    active_tab
     @match = Match.find(params[:id])
   end
 
@@ -37,6 +39,7 @@ class MatchesController < ApplicationController
   end
 
   def destroy
+    active_tab
     @match = Match.find(params[:id])
     @match.destroy
 

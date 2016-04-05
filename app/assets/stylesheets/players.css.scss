@@ -3,10 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 @import 'variables';
 
-a {
-  text-decoration: none;
-}
-
+// Index
 .player {
   width: 100%;
   margin-bottom: 7px;
@@ -57,6 +54,12 @@ a {
     .score {
       width: 21%;
       padding-left: 10px;
+    }
+
+    .options {
+      background: $grey;
+      height: 25px;
+      text-align: center;
     }
   }
 }

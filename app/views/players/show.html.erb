@@ -1,45 +1,60 @@
-<h1 class="title">PROFILE</h1>
+<div class="title-bar">
+  <span class="title">PROFILE</span>
+  <a href="/players" class="btn">BACK</a>
+</div>
 
-<h2>Profile</h2>
-<p>
-  <strong>Name:</strong>
-  <%= @player.name %>
-</p>
+<table class="player">
+  <% player = @player %>
+  <!-- Player name & alias -->
+  <thead>
+    <tr>
+      <th class="align-left" colspan="5"><%= player.name.upcase %></th>
+      <th class="align-right light"><%= player.alias %></th>
+    </tr>
+  </thead>
+  <!-- Player stats -->
+  <tbody>
+    <tr class="spacer">
+      <td colspan="6"></td>
+    </tr>
+    <tr><!-- Wins & Goals -->
+      <td class="dark-grey align-right stat">WINS</td>
+      <td class="bar bg-blue" rowspan="3"></td>
+      <td class="black align-left pad-left score"><%= player.score.wins %></td>
+      <td class="dark-grey align-right stat">GOALS</td>
+      <td class="bar bg-red" rowspan="3"></td>
+      <td class="black align-left pad-left score"><%= player.score.goals %></td>
+    </tr>
+    <tr><!-- Loses & Win Ratio -->
+      <td class="dark-grey align-right stat">LOSES</td>
+      <td class="black align-left pad-left score"><%= player.score.loses %></td>
+      <td class="dark-grey align-right stat">WIN&nbsp;RATIO</td>
+      <td class="black align-left pad-left score"><%= player.score.wRatio %></td>
+    </tr>
+    <tr><!-- Points & Pull-ups -->
+      <td class="dark-grey align-right stat">POINTS</td>
+      <td class="black align-left pad-left score"><%= player.score.points %></td>
+      <td class="dark-grey align-right stat">PULL-UPS</td>
+      <td class="black align-left pad-left score"><%= player.score.pullUps %></td>
+    </tr>
+    <tr class="spacer">
+      <td colspan="6"></td>
+    </tr>
+    <tr class="options">
+      <td colspan="3">
+          <%= link_to image_tag('edit.svg', id: 'edit-icon'), edit_player_path(@player) %>
+      </td>
+      <td colspan="3">
+        <a href="#">
+          <%= link_to image_tag('delete.svg', id: 'delete-icon'), player_path(@player), method: :delete, data: { confirm: 'Are you sure?' }  %>
+        </a>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
-<p>
-  <strong>Alias:</strong>
-  <%= @player.alias %>
-</p>
-
-<p>
-  <strong>Score</strong>
-  <%= @player.name %>
-  <strong>SCORE DETAILS</strong>
-  <% @score_details.each do |key, value| %>
-    <%= key %>: <%= value %><br>
-  <% end %>
-  <strong>MATCH DETAILS</strong>
-  <% @match_details.each do |item| %>
-      <% item.each do |key, value| %>
-        <%= key %>: <%= value %><br>
-      <% end %>
-  <% end %>
-
-
-
-
-
-
-</p>
-
-<p>
-  <strong>Matches:</strong>
-
-
-</p>
-
-<%= link_to 'Edit', edit_player_path(@player) %>
-<%= link_to 'Delete', player_path(@player),
-              method: :delete,
-              data: { confirm: 'Are you sure?' } %>
-<%= link_to 'Back', players_path %>
+<% @match_details.each do |item| %>
+    <% item.each do |key, value| %>
+      <%= key %>: <%= value %><br>
+    <% end %>
+<% end %>

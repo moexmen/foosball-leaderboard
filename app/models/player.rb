@@ -1,5 +1,5 @@
 class Player < ActiveRecord::Base
-  has_one :Score, dependent: :destroy
+  has_one :score, dependent: :destroy
 
   after_create do
     # generate score record

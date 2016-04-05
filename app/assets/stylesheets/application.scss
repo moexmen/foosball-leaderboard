@@ -19,6 +19,8 @@
   font-family: Lato;
   font-weight: 400;
   letter-spacing: 0.6px;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 body, h1, ul, li {
@@ -31,6 +33,11 @@ body {
   height: 100%;
 }
 
+a {
+  text-decoration: none;
+}
+
+// Standard table styling
 table {
   border-collapse: collapse;
   border-spacing: 0;
@@ -50,22 +57,16 @@ table {
   }
 }
 
-.v-center {
-  position: relative;
-  top: 50%;
-  -webkit-transform: translateY(-50%);
-  transform: translateY(-50%);
-}
-
+// Menu bar (Players, Leaderboard & Matches)
 .menu {
- height: 40px;
- text-align: center;
+  height: 40px;
+  text-align: center;
 
- ul {
+  ul {
    list-style-type: none;
- }
+  }
 
- li {
+  li {
    display: inline-block;
    margin-left: 2%;
    margin-right: 2%;
@@ -77,20 +78,17 @@ table {
      text-decoration: none;
      color: $dark_grey;
      border-bottom: 0px solid $white;
-     -webkit-transition: all 0.3s ease;
-     transition: all 0.3s ease;
    }
- }
+  }
 
- .active a, a:hover {
+  .active a, a:hover {
    color: $black;
    padding: 8px 0;
    border-bottom: 3px solid $orange;
-   -webkit-transition: all 0.3s ease;
-   transition: all 0.3s ease;
- }
+  }
 }
 
+// Standard page styling
 .page {
   width: 94%;
   height: 100%;
@@ -122,19 +120,16 @@ table {
       margin: 24px 0px 0px 0px;
       padding: 6px 26px 6px 26px;
       text-decoration: none;
-      -webkit-transition: all 0.3s ease;
-      transition: all 0.3s ease;
 
       &:hover {
         background: $dark_grey;
         color: $white;
-        -webkit-transition: all 0.3s ease;
-        transition: all 0.3s ease;
       }
     }
   }
 }
 
+// Credits footer
 .credits {
   text-align: center;
   margin-top: 30px;
@@ -150,4 +145,84 @@ table {
     color: $orange;
     font-weight: 400;
   }
+}
+
+// Form styling (Add and Edit)
+.form {
+  width: 92%;
+  margin-left: auto;
+  margin-right: auto;
+
+  .row {
+    width: 100%;
+    line-height: 28px;
+    margin: 20px 0 0 0;
+  }
+
+  .form-label {
+    color: $dark_grey;
+    font-size: 15px;
+    letter-spacing: 0.7px;
+  }
+
+  .form-text {
+    color: $black;
+    float: right;
+    border: 1px solid $dark_grey;
+    font-size: 15px;
+    border-radius: 2px;
+    height: 25px;
+    width: 200px;
+  }
+}
+
+.buttons {
+  margin-top: 40px;
+
+  .form-btn {
+    display: block;
+    border: 2px solid;
+    border-radius: 2px;
+    background: transparent;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 2.2px;
+    padding: 15px 0;
+    margin: 20px 0 0 0;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .black-btn {
+    border-color: $black;
+    color: $black;
+    width: 204px;
+
+    &:hover {
+      background: $black;
+      color: $white;
+    }
+  }
+
+  .grey-btn {
+    border-color: $dark-grey;
+    color: $dark-grey;
+    width: 200px;
+
+    &:hover {
+      background: $dark-grey;
+      color: $white;
+    }
+  }
+}
+
+// Icon styling
+#edit-icon {
+  width: 17px;
+  cursor: pointer;
+}
+
+#delete-icon {
+  width: 15px;
+  cursor: pointer;
 }

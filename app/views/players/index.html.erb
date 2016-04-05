@@ -3,7 +3,8 @@
   <a href="/players/new" class="btn">ADD</a>
 </div>
 
-<% @players.each_with_index do |player, index| %>
+<!-- Loops and displays all players -->
+<% @players.each do |player| %>
   <%= link_to (player_path(player)) do %>
     <div>
       <table class="player">
@@ -22,22 +23,22 @@
           <tr><!-- Wins & Goals -->
             <td class="dark-grey align-right stat">WINS</td>
             <td class="bar bg-blue" rowspan="3"></td>
-            <td class="black align-left pad-left score"><%= @scores[index].wins %></td>
+            <td class="black align-left pad-left score"><%= player.score.wins %></td>
             <td class="dark-grey align-right stat">GOALS</td>
             <td class="bar bg-red" rowspan="3"></td>
-            <td class="black align-left pad-left score"><%= @scores[index].goals %></td>
+            <td class="black align-left pad-left score"><%= player.score.goals %></td>
           </tr>
           <tr><!-- Loses & Win Ratio -->
             <td class="dark-grey align-right stat">LOSES</td>
-            <td class="black align-left pad-left score"><%= @scores[index].loses %></td>
+            <td class="black align-left pad-left score"><%= player.score.loses %></td>
             <td class="dark-grey align-right stat">WIN&nbsp;RATIO</td>
-            <td class="black align-left pad-left score"><%= @scores[index].wRatio %></td>
+            <td class="black align-left pad-left score"><%= player.score.wRatio %></td>
           </tr>
           <tr><!-- Points & Pull-ups -->
             <td class="dark-grey align-right stat">POINTS</td>
-            <td class="black align-left pad-left score"><%= @scores[index].points %></td>
+            <td class="black align-left pad-left score"><%= player.score.points %></td>
             <td class="dark-grey align-right stat">PULL-UPS</td>
-            <td class="black align-left pad-left score"><%= @scores[index].pullUps %></td>
+            <td class="black align-left pad-left score"><%= player.score.pullUps %></td>
           </tr>
           <tr class="spacer">
             <td colspan="6"></td>

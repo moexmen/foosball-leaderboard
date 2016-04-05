@@ -1,19 +1,20 @@
 <h1 class="title">ADD PLAYER</h1>
 
-<%= form_for :player, url: players_path do |f| %>
-	<p>
-		<%= f.label :name %><br>
-		<%= f.text_field :name %>
-	</p>
+<div class="form">
+	<%= form_for :player, url: players_path do |f| %>
+		<div class="row">
+			<span class="form-label">NAME</span>
+			<span><%= f.text_field :name, class: 'form-text', autocomplete: :off %></span>
+		</div>
 
-	<p>
-		<%= f.label :alias %><br>
-		<%= f.text_field :alias %>
-	</p>
+		<div class="row">
+			<span class="form-label">ALIAS</span>
+			<span><%= f.text_field :alias, class: 'form-text', autocomplete: :off %></span>
+		</div>
 
-	<p>
-		<%= f.submit %>
-	</p>
-<% end %>
-
-<%= link_to 'Back', players_path %>
+		<div class="buttons">
+			<%= f.submit 'ADD', class: 'form-btn black-btn' %>
+			<a href="/players" class="form-btn grey-btn align-center">BACK</a>
+		</div>
+	<% end %>
+</div>
