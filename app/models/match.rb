@@ -1,5 +1,6 @@
 class Match < ActiveRecord::Base
   has_many :player_matches
+  has_many :players, through: :player_matches
   attr_accessor :red_att
   attr_accessor :red_def
   attr_accessor :blue_att
@@ -64,26 +65,18 @@ class Match < ActiveRecord::Base
     self.redGoal > self.blueGoal ? 'r' : 'b'
   end
 
-  def self.get_player_matches_json(player_id)
-    # return json of matches
+  def self.get_player_matches(player_id)
+    # @return matches array for a single player
     matches = []
     single_pm_records = PlayerMatch.where(:player_id => player_id)
     single_pm_records.each do |pm|
       matches.push(Match.where(:id => pm.match_id).take!)
     end
-
-    match_json_arr = get_json_from_matches_array(matches)
-
-    puts JSON.pretty_generate(match_json_arr)
-    return JSON.pretty_generate(match_json_arr)
+    return get_matches_arr(matches)
   end
 
-  def self.get_all_matches_json
-    return JSON.pretty_generate(get_json_from_matches_array(Match.all))
-  end
-
-  def self.get_match_json(match)
-    return JSON.pretty_generate(get_json_from_match(match))
+  def self.get_all_matches_arr
+    return get_matches_arr(Match.all)
   end
 
   def add_players_for_match(red_att, red_def, blue_att, blue_def)
@@ -93,46 +86,52 @@ class Match < ActiveRecord::Base
     self.blue_def = blue_def
   end
 
-  # helper
-  def self.get_json_from_matches_array(matches)
-    match_json_arr = []
+  # helpers
+  def self.get_matches_arr(matches)
+    # @return matches array
+    match_info_arr = []
     matches.each do |match|
-      match_json_arr.push(get_json_from_match(match))
+      match_info_arr.push(get_match_hash(match))
     end
-    return match_json_arr
+    return match_info_arr
   end
 
-  def self.get_json_from_match(match)
-    match_pm_records = PlayerMatch.where(:match_id => match.id)
-    # puts match_pm_records
+  def self.get_player_from_pm(players, pm)
+    players.each do |player|
+      if pm.player_id == player.id
+        return player
+      end
+    end
+  end
 
-    # Setup json and append
-    red_atk = Player.find((match_pm_records.where(:position => 'atk', :team => 'r').take!).player_id)
-    red_def = Player.find((match_pm_records.where(:position => 'def', :team => 'r').take!).player_id)
-    blue_atk = Player.find((match_pm_records.where(:position => 'atk', :team => 'b').take!).player_id)
-    blue_def = Player.find((match_pm_records.where(:position=> 'def', :team => 'b').take!).player_id)
+  def self.get_match_hash(match)
+    # @return single match hash
+    player_matches = match.player_matches
+    players = match.players
+    red_atk ||= []
+    red_def ||= []
+    blue_atk ||= []
+    blue_def ||= []
 
-    # red_atk_alias = Player.find((match_pm_records.where(:position => 'atk', :team => 'r').take!).player_id).alias
-    # blue_atk_alias = Player.find((match_pm_records.where(:position => 'atk', :team => 'b').take!).player_id).alias
-    # red_def_alias = Player.find((match_pm_records.where(:position => 'def', :team => 'r').take!).player_id).alias
-    # blue_def_alias = Player.find((match_pm_records.where(:position => 'def', :team => 'b').take!).player_id).alias
-
-    json_hash = {
-        :match_id => match.id,
-        :red_atk => red_atk.alias,
-        :red_def => red_def.alias,
-        :blue_atk => blue_atk.alias,
-        :blue_def => blue_def.alias,
-        # :red_atk_alias => red_atk_alias,
-        # :blue_atk_alias => blue_atk_alias,
-        # :red_def_alias => red_def_alias,
-        # :blue_def_alias => blue_def_alias,
-        :red_goal => match.redGoal,
-        :blue_goal => match.blueGoal,
-        :winner => match.winner,
-        :date => match.created_at.strftime('%d %^b %Y')
+    # find player with associated team and position
+    player_matches.each do |pm|
+      if pm.position == 'atk' and pm.team == 'r'
+        red_atk = get_player_from_pm(players, pm)
+      elsif pm.position == 'atk' and pm.team == 'b'
+        blue_atk = get_player_from_pm(players, pm)
+      elsif pm.position == 'def' and pm.team == 'r'
+        red_def = get_player_from_pm(players, pm)
+      else
+        blue_def = get_player_from_pm(players, pm)
+      end
+    end
+    
+    match_hash = {
+        match: match,
+        red_atk: red_atk,
+        red_def: red_def,
+        blue_atk: blue_atk,
+        blue_def: blue_def
     }
-
-    return json_hash
   end
 end

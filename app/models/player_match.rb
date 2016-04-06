@@ -1,5 +1,6 @@
 class PlayerMatch < ActiveRecord::Base
   belongs_to :match
+  belongs_to :player
   after_create 'update_player_score'
   after_update 'update_player_score'
 

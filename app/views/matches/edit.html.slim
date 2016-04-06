@@ -5,33 +5,33 @@ h1.title
     .row
       span.form-label
         | RED ATTACK
-      - selected_red_atk = @players.where(:alias => @match_detail['red_atk']).take
+      - selected_red_atk = @match[:red_atk]
       = select_tag :redAtt, options_from_collection_for_select(@players, 'id', 'name', selected_red_atk.id ), :class => 'selector'
     .row
       span.form-label
         | RED DEFENSE
-      - selected_red_def = @players.where(:alias => @match_detail['red_def']).take
+      - selected_red_def = @match[:red_def]
       = select_tag :redDef, options_from_collection_for_select(@players, 'id', 'name', selected_red_def.id ), :class => 'selector'
     .row
       span.form-label
         | BLUE ATTACK
-      - selected_blue_att = @players.where(:alias => @match_detail['blue_atk']).take
+      - selected_blue_att = @match[:blue_atk]
       = select_tag :blueAtt, options_from_collection_for_select(@players, 'id', 'name', selected_blue_att.id ), :class => 'selector'
     .row
       span.form-label
         | BLUE DEFENSE
-      - selected_blue_def = @players.where(:alias => @match_detail['blue_def']).take
+      - selected_blue_def = @match[:blue_def]
       = select_tag :blueDef, options_from_collection_for_select(@players, 'id', 'name', selected_blue_def.id ), :class => 'selector'
     .row
       span.form-label
         | RED SCORE
       span
-        = text_field_tag :redGoal, @match.redGoal, class: 'form-text'
+        = text_field_tag :redGoal, @match[:match].redGoal, class: 'form-text'
     .row
       span.form-label
         | BLUE SCORE
       span
-        = text_field_tag :blueGoal, @match.blueGoal, class: 'form-text'
+        = text_field_tag :blueGoal, @match[:match].blueGoal, class: 'form-text'
     .buttons
       = submit_tag 'EDIT', class: 'form-btn black-btn'
       = link_to 'CANCEL', matches_path, class: 'form-btn grey-btn align-center'

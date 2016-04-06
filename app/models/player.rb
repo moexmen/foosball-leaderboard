@@ -1,5 +1,6 @@
 class Player < ActiveRecord::Base
   has_one :score, dependent: :destroy
+  has_many :matches, through: :player_matches
 
   after_create do
     # generate score record
@@ -8,7 +9,7 @@ class Player < ActiveRecord::Base
   end
 
   def self.get_profile_json(player_id)
-    match_arr_json = Match.get_player_matches_json(player_id)
+    match_arr_json = Match.get_player_matches(player_id)
     score_json = Score.get_score_json(player_id)
 
     profile_json = {
