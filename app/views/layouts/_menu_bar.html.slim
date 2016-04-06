@@ -3,28 +3,29 @@
     ul
       - if @active == 1
         li.active
-          a[href="/players"]
+          / a[href="/players"]
+          = link_to players_path
             | PLAYERS
       - else
         li
-          a[href="/players"]
+          = link_to players_path
             | PLAYERS
         
       - if @active == 2
         li.active
-          a[href="/scores"]
+          = link_to scores_path
             | LEADERBOARD
       - else
         li
-          a[href="/scores"]
+          = link_to scores_path
             | LEADERBOARD
             
       - if @active == 3
         li.active
-          a[href="/matches"]
+          = link_to matches_path
             | MATCHES
 
       - else
         li
-          a[href="/matches"]
+          = link_to matches_path
             | MATCHES
