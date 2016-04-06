@@ -44,13 +44,8 @@ table {
 }
 
 //Header
-.bottom-line {
-  border-bottom: 0.5px solid #BBBBBB;
-}
-
 .header {
-  padding: 12px 0 12px 0;
-  padding-left: 18px;
+  padding: 12px 0 12px 18px;
   font-size: 0;
 
   #foosball-logo {
@@ -58,10 +53,17 @@ table {
   }
 }
 
+.bottom-line {
+  border-bottom: 0.5px solid #BBBBBB;
+}
+
 // Menu bar (Players, Leaderboard & Matches)
 .menu {
   height: 40px;
+  width: 100%;
+  background: $white;
   text-align: center;
+
 
   ul {
    list-style-type: none;
@@ -87,6 +89,12 @@ table {
    padding: 8px 0;
    border-bottom: 3px solid $orange;
   }
+}
+
+.menu-fixed {
+  top: 0;
+  z-index: 100;
+  position: fixed;
 }
 
 // Standard page styling
