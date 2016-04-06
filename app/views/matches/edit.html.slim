@@ -26,12 +26,12 @@ h1.title
       span.form-label
         | RED SCORE
       span
-        = text_field_tag :redGoal, @match.redGoal, class: 'form-text'
+        = select_tag 'redGoal', options_for_select(@score_array, @match.redGoal), class: 'selector'
     .row
       span.form-label
         | BLUE SCORE
       span
-        = text_field_tag :blueGoal, @match.blueGoal, class: 'form-text'
+        = select_tag 'blueGoal', options_for_select(@score_array, @match.blueGoal), class: 'selector'
     .buttons
       = submit_tag 'EDIT', class: 'form-btn black-btn'
       = link_to 'CANCEL', matches_path, class: 'form-btn grey-btn align-center'

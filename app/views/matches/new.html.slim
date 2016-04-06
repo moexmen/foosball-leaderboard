@@ -6,32 +6,32 @@ h1.title
       span.form-label
         | RED ATTACK
       span
-        = text_field_tag :redAtt, nil, class: 'form-text'
+        = select_tag :redAtt, options_from_collection_for_select(@players, 'id', 'name'), include_blank: "Select", class: 'selector'
     .row
       span.form-label
         | RED DEFENSE
       span
-        = text_field_tag :redDef, nil, class: 'form-text'
+        = select_tag :redDef, options_from_collection_for_select(@players, 'id', 'name'), include_blank: "Select", class: 'selector'
     .row
       span.form-label
         | BLUE ATTACK
       span
-        = text_field_tag :blueAtt, nil, class: 'form-text'
+        = select_tag :blueAtt, options_from_collection_for_select(@players, 'id', 'name'), include_blank: "Select", class: 'selector'
     .row
       span.form-label
         | BLUE DEFENSE
       span
-        = text_field_tag :blueDef, nil, class: 'form-text'
+        = select_tag :blueDef, options_from_collection_for_select(@players, 'id', 'name'), include_blank: "Select", class: 'selector'
     .row
       span.form-label
         | RED SCORE
       span
-        = text_field_tag :redGoal, nil, class: 'form-text'
+        = select_tag 'redGoal', options_for_select(@score_array), include_blank: "Score", class: 'selector'
     .row
       span.form-label
         | BLUE SCORE
       span
-        = text_field_tag :blueGoal, nil, class: 'form-text'
+        = select_tag 'blueGoal', options_for_select(@score_array), include_blank: "Score", class: 'selector'
     .buttons
       = submit_tag 'ADD', class: 'form-btn black-btn'
       = link_to 'CANCEL', matches_path, class: 'form-btn grey-btn align-center'
