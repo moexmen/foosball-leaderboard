@@ -1,0 +1,20 @@
+doctype html
+html
+  head
+    title
+      | ESTL Foosball
+    = stylesheet_link_tag 'application', params[:controller], media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+  body
+    .header.bottom-line
+      = image_tag('foosball.svg', id: 'foosball-logo')
+    = render partial: 'layouts/menu_bar'
+    .filler
+    .page
+      = yield
+    .credits
+      span
+        | A project by 
+      span.team
+        | The Sweatshop

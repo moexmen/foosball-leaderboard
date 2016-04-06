@@ -1,0 +1,31 @@
+.menu.bottom-line
+  .v-center
+    ul
+      - if @active == 1
+        li.active
+          / a[href="/players"]
+          = link_to players_path
+            | PLAYERS
+      - else
+        li
+          = link_to players_path
+            | PLAYERS
+        
+      - if @active == 2
+        li.active
+          = link_to scores_path
+            | LEADERBOARD
+      - else
+        li
+          = link_to scores_path
+            | LEADERBOARD
+            
+      - if @active == 3
+        li.active
+          = link_to matches_path
+            | MATCHES
+
+      - else
+        li
+          = link_to matches_path
+            | MATCHES

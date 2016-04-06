@@ -3,45 +3,19 @@ class ScoresController < ApplicationController
     active_tab
     @players = Player.where(:active => true)
 
-    if session[:sort_tab] == 1
-      @scores = sort_by_points
-    elsif session[:sort_tab] == 2
-      @scores = sort_by_goals
-    elsif session[:sort_tab] == 3
-      @scores = sort_by_pull_ups
-    else
-      @scores = sort_by_wins
-    end
+    params[:sort_by] = 'wins' unless params[:sort_by]
 
-    @html_option_string = ''
-    options = %w(Wins Points Goals Pull-ups)
-    options.each_with_index do |item, index|
-      if index == session[:sort_tab]
-        # Previous selected option
-        @html_option_string << "<option value= \"#{item}\" selected>#{item}</option>"
-      else
-        # Other selected option
-        @html_option_string << "<option value= \"#{item}\">#{item}</option>"
-      end
-    end
-  end
+    @sort_by = params[:sort_by].downcase
 
-  def update_score
-    @scores = sort_by_wins
-
-    case params[:score_sort]
-      when 'Points'
+    case @sort_by
+      when 'points'
         @scores = sort_by_points
-        store_tab(1)
-      when 'Goals'
+      when 'goals'
         @scores = sort_by_goals
-        store_tab(2)
-      when 'Pull-ups'
+      when 'pull-ups'
         @scores = sort_by_pull_ups
-        store_tab(3)
       else
         @scores = sort_by_wins
-        store_tab(0)
     end
 
   end

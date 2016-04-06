@@ -1,0 +1,84 @@
+.title-bar
+  span.title
+    | MATCHES
+  a.btn[href="/matches/new"]
+    | ADD
+- @matches_details.each_with_index do |match, index|
+  table.match-tbl
+    thead
+      tr
+        th[colspan="5"]
+          = match['date']
+    tbody
+      tr
+        - if match['winner']=='b'
+          td.thin.bg-blue[rowspan="4"]
+          td.role.column.blue-text
+            | ATTACK
+        - else
+          td.thin.bg-red[rowspan="4"]
+          td.role.column.red-text
+            | ATTACK
+        td.match-score.column[rowspan="4"]
+          - if match['winner']=='b'
+            span.blue-text
+              = match['blue_goal']
+            | -
+            span.red-text
+              = match['red_goal']
+              |     
+          - else
+            span.red-text
+              = match['red_goal']
+            | -
+            span.blue-text
+              = match['blue_goal']
+              |     
+        - if match['winner']=='b'
+          td.role.align-right.column.red-text
+            | ATTACK
+          td.thin.bg-red[rowspan="4"]
+        - else
+          td.role.align-right.column.blue-text
+            | ATTACK
+          td.thin.bg-blue[rowspan="4"]
+      tr
+        - if match['winner']=='b'
+          td.player-details
+            = match['blue_atk'].upcase
+          td.player-details.align-right
+            = match['red_atk'].upcase
+        - else
+          td.player-details
+            = match['red_atk'].upcase
+          td.player-details.align-right
+            = match['blue_atk'].upcase
+      tr
+        - if match['winner']=='b'
+          td.role.blue-text
+            | DEFENSE
+          td.role.align-right.red-text
+            | DEFENSE
+        - else
+          td.role.red-text
+            | DEFENSE
+          td.role.align-right.blue-text
+            | DEFENSE
+      tr
+        - if match['winner']=='b'
+          td.player-details
+            = match['blue_def'].upcase
+          td.player-details.align-right
+            = match['red_def'].upcase
+        - else
+          td.player-details
+            = match['red_def'].upcase
+          td.player-details.align-right
+            = match['blue_def'].upcase
+  table.match-btn
+    tbody
+      tr.options
+        td
+          = link_to image_tag('edit.svg', class: 'edit-icon'), edit_match_path(@matches[index])
+        td
+          = link_to image_tag('delete.svg', class: 'delete-icon'), match_path(@matches[index]), method: :delete, data: { confirm: 'Are you sure?' }

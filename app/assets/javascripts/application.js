@@ -15,6 +15,7 @@
 //= require turbolinks
 //= require_tree .
 
+//Floating menu bar
 $(document).ready(function() {
   $(window).scroll(function () {
     console.log($(window).scrollTop());
