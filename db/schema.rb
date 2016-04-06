@@ -31,10 +31,11 @@ ActiveRecord::Schema.define(version: 20160402122345) do
   end
 
   create_table "players", force: :cascade do |t|
-    t.string   "name",                 null: false
-    t.string   "alias",      limit: 5, null: false
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+    t.string   "name",                                null: false
+    t.string   "alias",      limit: 5,                null: false
+    t.boolean  "active",               default: true, null: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
   end
 
   create_table "scores", force: :cascade do |t|

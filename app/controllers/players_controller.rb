@@ -3,7 +3,7 @@ require 'json'
 class PlayersController < ApplicationController
 	def index
 		active_tab
-		@players = Player.all
+		@players = Player.where(active: true)
 		@scores = Score.all
 	end
 
@@ -15,14 +15,6 @@ class PlayersController < ApplicationController
 
     @score_details = JSON.parse(json_dict['score_details'])
     @match_details = JSON.parse(json_dict['match_details'])
-  end
-
-  def format(hash)
-    output = Hash.new
-    hash.each do |key, value|
-      output[key] = cleanup(value)
-    end
-    output
   end
 
 	def new
@@ -51,7 +43,7 @@ class PlayersController < ApplicationController
 
 	def destroy
 	  @player = Player.find(params[:id])
-	  @player.destroy
+	  Player.inactive(@player)
 
 	  redirect_to players_path
 	end

@@ -1,7 +1,7 @@
 class ScoresController < ApplicationController
   def index
     active_tab
-    @players = Player.all
+    @players = Player.where(:active => true)
 
     if session[:sort_tab] == 1
       @scores = sort_by_points

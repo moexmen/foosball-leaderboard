@@ -20,4 +20,10 @@ class Player < ActiveRecord::Base
     return full_json
   end
 
+  def self.inactive(player)
+    player.active = false
+    player.save
+    player.score.destroy
+  end
+
 end

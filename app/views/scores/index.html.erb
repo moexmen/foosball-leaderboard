@@ -32,7 +32,7 @@
       <tr class="spacer"></tr>
         <tr>
           <td class="left-align dark-grey"><%= i + 1 %></td>
-          <td class="align-left pad-left"><%= @players[score.player_id - 1].alias %></td>
+          <td class="align-left pad-left"><%= @players.find(score.id).alias %></td>
           <td><%= score.wins %></td>
           <td><%= score.loses %></td>
           <td><%= score.points %></td>
