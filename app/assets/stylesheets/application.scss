@@ -97,6 +97,13 @@ table {
   position: fixed;
 }
 
+.filler {
+  height: 0;
+  width: 100%;
+  -webkit-transition: none;
+  transition: none;
+}
+
 // Standard page styling
 .page {
   width: 94%;
