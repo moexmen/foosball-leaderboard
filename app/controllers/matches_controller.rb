@@ -1,7 +1,7 @@
 class MatchesController < ApplicationController
   def index
     active_tab
-    @matches = Match.get_all_matches_arr
+    @matches = Match.all
   end
 
   def new

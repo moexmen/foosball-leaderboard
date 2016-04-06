@@ -3,15 +3,15 @@
     | MATCHES
   a.btn[href="/matches/new"]
     | ADD
-- @matches.each do |match|
+- @matches.includes(:player_matches, :players).each do |match|
   table.match-tbl
     thead
       tr
         th[colspan="5"]
-          = pretty_format_date(match[:match].updated_at)
+          = pretty_format_date(match.updated_at)
     tbody
       tr
-        - if match[:match].winner=='b'
+        - if match.winner=='b'
           td.thin.bg-blue[rowspan="4"]
           td.role.column.blue-text
             | ATTACK
@@ -20,21 +20,21 @@
           td.role.column.red-text
             | ATTACK
         td.match-score.column[rowspan="4"]
-          - if match[:match].winner=='b'
+          - if match.winner=='b'
             span.blue-text
-              = match[:match].blueGoal
+              = match.blueGoal
             | -
             span.red-text
-              = match[:match].redGoal
+              = match.redGoal
               |     
           - else
             span.red-text
-              = match[:match].redGoal
+              = match.redGoal
             | -
             span.blue-text
-              = match[:match].blueGoal
+              = match.blueGoal
               |     
-        - if match[:match].winner=='b'
+        - if match.winner=='b'
           td.role.align-right.column.red-text
             | ATTACK
           td.thin.bg-red[rowspan="4"]
@@ -43,18 +43,23 @@
             | ATTACK
           td.thin.bg-blue[rowspan="4"]
       tr
-        - if match[:match].winner=='b'
+        - player_matches = match.player_matches
+        - if match.winner=='b'
           td.player-details
-            = match[:blue_atk].alias.upcase
+            /blue_atk
+            = player_matches[2].player.alias.upcase
           td.player-details.align-right
-            = match[:red_atk].alias.upcase
+            /red_atk
+            = player_matches[0].player.alias.upcase
         - else
           td.player-details
-            = match[:red_atk].alias.upcase
+            /red_atk
+            = player_matches[0].player.alias.upcase
           td.player-details.align-right
-            = match[:blue_atk].alias.upcase
+            /blue_atk
+            = player_matches[2].player.alias.upcase
       tr
-        - if match[:match].winner=='b'
+        - if match.winner=='b'
           td.role.blue-text
             | DEFENSE
           td.role.align-right.red-text
@@ -65,20 +70,24 @@
           td.role.align-right.blue-text
             | DEFENSE
       tr
-        - if match[:match].winner=='b'
+        - if match.winner=='b'
           td.player-details
-            = match[:blue_def].alias.upcase
+            /blue_def
+            = player_matches[3].player.alias.upcase
           td.player-details.align-right
-            = match[:red_def].alias.upcase
+            /red_def
+            = player_matches[1].player.alias.upcase
         - else
           td.player-details
-            = match[:red_def].alias.upcase
+            /red_def
+            = player_matches[1].player.alias.upcase
           td.player-details.align-right
-            = match[:blue_def].alias.upcase
+            /blue_def
+            = player_matches[3].player.alias.upcase
   table.match-btn
     tbody
       tr.options
         td
-          = link_to image_tag('edit.svg', class: 'edit-icon'), edit_match_path(match[:match])
+          = link_to image_tag('edit.svg', class: 'edit-icon'), edit_match_path(match)
         td
-          = link_to image_tag('delete.svg', class: 'delete-icon'), match_path(match[:match]), method: :delete, data: { confirm: 'Are you sure?' }
+          = link_to image_tag('delete.svg', class: 'delete-icon'), match_path(match), method: :delete, data: { confirm: 'Are you sure?' }
