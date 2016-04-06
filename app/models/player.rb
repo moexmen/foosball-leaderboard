@@ -8,17 +8,17 @@ class Player < ActiveRecord::Base
     puts "[SERVER] Generated new score record for player #{self.id}"
   end
 
-  def self.get_profile_json(player_id)
-    match_arr_json = Match.get_player_matches(player_id)
-    score_json = Score.get_score_json(player_id)
+  def self.get_profile_info(player_id)
+    match_arr = Match.get_player_matches(player_id)
+    score_info = Score.get_score_info(player_id)
 
-    profile_json = {
-        :score_details => score_json,
-        :match_details => match_arr_json
+    profile_info = {
+        :player => Player.find(player_id),
+        :score => score_info,
+        :match_details => match_arr
     }
 
-    full_json = JSON.pretty_generate(profile_json)
-    return full_json
+    return profile_info
   end
 
   def self.inactive(player)
