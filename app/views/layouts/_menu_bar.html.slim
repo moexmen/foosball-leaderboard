@@ -1,0 +1,30 @@
+.menu.bottom-line
+  .v-center
+    ul
+      - if @active == 1
+        li.active
+          a[href="/players"]
+            | PLAYERS
+      - else
+        li
+          a[href="/players"]
+            | PLAYERS
+        
+      - if @active == 2
+        li.active
+          a[href="/scores"]
+            | LEADERBOARD
+      - else
+        li
+          a[href="/scores"]
+            | LEADERBOARD
+            
+      - if @active == 3
+        li.active
+          a[href="/matches"]
+            | MATCHES
+
+      - else
+        li
+          a[href="/matches"]
+            | MATCHES
