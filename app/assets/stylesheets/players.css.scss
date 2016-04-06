@@ -2,6 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 @import 'variables';
+@import 'matches';
 
 // Index
 .player {
@@ -61,4 +62,8 @@
       text-align: center;
     }
   }
+}
+
+.player-match {
+  margin: 0 0 7px 0;
 }

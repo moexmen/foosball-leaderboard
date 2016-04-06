@@ -107,18 +107,27 @@ class Match < ActiveRecord::Base
     # puts match_pm_records
 
     # Setup json and append
-    red_atk = Player.find((match_pm_records.where(:position => 'atk', :team => 'r').take!).player_id).name
-    blue_atk = Player.find((match_pm_records.where(:position => 'atk', :team => 'b').take!).player_id).name
-    red_def = Player.find((match_pm_records.where(:position => 'def', :team => 'r').take!).player_id).name
-    blue_def = Player.find((match_pm_records.where(:position=> 'def', :team => 'b').take!).player_id).name
+    red_atk = Player.find((match_pm_records.where(:position => 'atk', :team => 'r').take!).player_id)
+    red_def = Player.find((match_pm_records.where(:position => 'def', :team => 'r').take!).player_id)
+    blue_atk = Player.find((match_pm_records.where(:position => 'atk', :team => 'b').take!).player_id)
+    blue_def = Player.find((match_pm_records.where(:position=> 'def', :team => 'b').take!).player_id)
+
+    # red_atk_alias = Player.find((match_pm_records.where(:position => 'atk', :team => 'r').take!).player_id).alias
+    # blue_atk_alias = Player.find((match_pm_records.where(:position => 'atk', :team => 'b').take!).player_id).alias
+    # red_def_alias = Player.find((match_pm_records.where(:position => 'def', :team => 'r').take!).player_id).alias
+    # blue_def_alias = Player.find((match_pm_records.where(:position => 'def', :team => 'b').take!).player_id).alias
 
     json_hash = {
         :match_id => match.id,
-        :red_atk => red_atk,
-        :red_def => red_def,
+        :red_atk => red_atk.alias,
+        :red_def => red_def.alias,
+        :blue_atk => blue_atk.alias,
+        :blue_def => blue_def.alias,
+        # :red_atk_alias => red_atk_alias,
+        # :blue_atk_alias => blue_atk_alias,
+        # :red_def_alias => red_def_alias,
+        # :blue_def_alias => blue_def_alias,
         :red_goal => match.redGoal,
-        :blue_atk => blue_atk,
-        :blue_def => blue_def,
         :blue_goal => match.blueGoal,
         :winner => match.winner,
         :date => match.created_at.strftime('%d %^b %Y')
@@ -126,5 +135,4 @@ class Match < ActiveRecord::Base
 
     return json_hash
   end
-
 end

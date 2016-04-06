@@ -27,7 +27,7 @@ class ScoresController < ApplicationController
   end
 
   def update_score
-    @scores = sort_by_points
+    @scores = sort_by_wins
 
     case params[:score_sort]
       when 'Points'

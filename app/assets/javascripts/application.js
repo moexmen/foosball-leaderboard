@@ -14,3 +14,18 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+$(document).ready(function() {
+  $(window).scroll(function () {
+    console.log($(window).scrollTop());
+
+    if ($(window).scrollTop() > 63) {
+      $('.menu').addClass('menu-fixed');
+      $('.filler').css({'height':'40px'});
+    }
+    if ($(window).scrollTop() < 63) {
+      $('.menu').removeClass('menu-fixed');
+      $('.filler').css({'height':'0px'});
+    }
+  });
+});

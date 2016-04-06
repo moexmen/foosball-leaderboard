@@ -50,11 +50,11 @@
       </tr>
     	<tr>
         <% if match['winner']=='b' %>
-          <td class="player"><%= match['blue_atk'].upcase %></td>
-          <td class="player align-right"><%= match['red_atk'].upcase %></td>
+          <td class="player-details"><%= match['blue_atk'].upcase %></td>
+          <td class="player-details align-right"><%= match['red_atk'].upcase %></td>
         <% else %>
-          <td class="player"><%= match['red_atk'].upcase %></td>
-          <td class="player align-right"><%= match['blue_atk'].upcase %></td>
+          <td class="player-details"><%= match['red_atk'].upcase %></td>
+          <td class="player-details align-right"><%= match['blue_atk'].upcase %></td>
         <% end %>
       </tr>
       <tr>
@@ -68,11 +68,11 @@
       </tr>
       <tr>
         <% if match['winner']=='b' %>
-          <td class="player"><%= match['blue_def'].upcase %></td>
-          <td class="player align-right"><%= match['red_def'].upcase %></td>
+          <td class="player-details"><%= match['blue_def'].upcase %></td>
+          <td class="player-details align-right"><%= match['red_def'].upcase %></td>
         <% else %>
-          <td class="player"><%= match['red_def'].upcase %></td>
-          <td class="player align-right"><%= match['blue_def'].upcase %></td>
+          <td class="player-details"><%= match['red_def'].upcase %></td>
+          <td class="player-details align-right"><%= match['blue_def'].upcase %></td>
         <% end %>
       </tr>
   	</tbody>
