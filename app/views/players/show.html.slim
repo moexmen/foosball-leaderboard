@@ -49,7 +49,7 @@ table.player
         = link_to image_tag('edit.svg', class: 'edit-icon'), edit_player_path(@player)
       td[colspan="3"]
         = link_to image_tag('delete.svg', class: 'delete-icon'), player_path(@player), method: :delete, data: { confirm: 'Are you sure?' }
-- @player.matches.each_with_index do |match, index|
+- @player.matches.includes(:player_matches, :players).each_with_index do |match, index|
   .player-match
     table.match-tbl
       thead
@@ -90,16 +90,21 @@ table.player
               | ATTACK
             td.thin.bg-blue[rowspan="4"]
         tr
+          - player_matches = match.player_matches
           - if match.winner=='b'
             td.player-details
-              = match.player_matches.where(position: 'atk', team:'b').take.player.alias.upcase
+              /blue_atk
+              = player_matches[2].player.alias.upcase
             td.player-details.align-right
-              = match.player_matches.where(position: 'atk', team: 'r').take.player.alias.upcase
+              /red_atk
+              = player_matches[0].player.alias.upcase
           - else
             td.player-details
-              = match.player_matches.where(position: 'atk', team: 'r').take.player.alias.upcase
+              /red_atk
+              = player_matches[0].player.alias.upcase
             td.player-details.align-right
-              = match.player_matches.where(position: 'atk', team:'b').take.player.alias.upcase
+              /blue_atk
+              = player_matches[2].player.alias.upcase
         tr
           - if match.winner=='b'
             td.role.blue-text
@@ -114,11 +119,15 @@ table.player
         tr
           - if match.winner=='b'
             td.player-details
-              = match.player_matches.where(position: 'def', team: 'b').take.player.alias.upcase
+              /blue_def
+              = player_matches[3].player.alias.upcase
             td.player-details.align-right
-              = match.player_matches.where(position: 'def', team: 'r').take.player.alias.upcase
+              /red_def
+              = player_matches[1].player.alias.upcase
           - else
             td.player-details
-              = match.player_matches.where(position: 'def', team: 'r').take.player.alias.upcase
+              /red_def
+              = player_matches[1].player.alias.upcase
             td.player-details.align-right
-              = match.player_matches.where(position: 'def', team: 'b').take.player.alias.upcase
+              //blue_def
+              = player_matches[3].player.alias.upcase
