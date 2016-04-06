@@ -1,7 +1,6 @@
 class ScoresController < ApplicationController
   def index
     active_tab
-    @players = Player.where(:active => true)
 
     params[:sort_by] = 'wins' unless params[:sort_by]
 
@@ -38,11 +37,6 @@ class ScoresController < ApplicationController
 
   def active_tab
     @active = 2
-  end
-
-  private
-  def store_tab(tab)
-    session[:sort_tab] = tab
   end
 
 end

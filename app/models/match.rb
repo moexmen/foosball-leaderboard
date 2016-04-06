@@ -65,14 +65,8 @@ class Match < ActiveRecord::Base
     self.redGoal > self.blueGoal ? 'r' : 'b'
   end
 
-  def self.get_player_matches(player_id)
-    # @return matches array for a single player
-    matches = []
-    single_pm_records = PlayerMatch.where(:player_id => player_id)
-    single_pm_records.each do |pm|
-      matches.push(Match.where(:id => pm.match_id).take!)
-    end
-    return get_matches_arr(matches)
+  def self.get_player_matches(player)
+    get_matches_arr(player.matches)
   end
 
   def self.get_all_matches_arr

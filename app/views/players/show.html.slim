@@ -7,9 +7,9 @@ table.player
   thead
     tr
       th.align-left[colspan="5"]
-        = @profile[:player].name.upcase
+        = @player.name.upcase
       th.align-right.light
-        = @profile[:player].alias
+        = @player.alias
   tbody
     tr.spacer
       td[colspan="6"]
@@ -18,47 +18,47 @@ table.player
         | WINS
       td.bar.bg-blue[rowspan="3"]
       td.black.align-left.pad-left.score
-        = @profile[:score].wins
+        = @player.score.wins
       td.dark-grey.align-right.stat
         | GOALS
       td.bar.bg-red[rowspan="3"]
       td.black.align-left.pad-left.score
-        = @profile[:score].goals
+        = @player.score.goals
     tr
       td.dark-grey.align-right.stat
         | LOSES
       td.black.align-left.pad-left.score
-        = @profile[:score].loses
+        = @player.score.loses
       td.dark-grey.align-right.stat
         | WIN RATIO
       td.black.align-left.pad-left.score
-        = @profile[:score].wRatio.round(2)
+        = @player.score.wRatio.round(2)
     tr
       td.dark-grey.align-right.stat
         | POINTS
       td.black.align-left.pad-left.score
-        = @profile[:score].points
+        = @player.score.points
       td.dark-grey.align-right.stat
         | PULL-UPS
       td.black.align-left.pad-left.score
-        = @profile[:score].pullUps
+        = @player.score.pullUps
     tr.spacer
       td[colspan="6"]
     tr.options
       td[colspan="3"]
-        = link_to image_tag('edit.svg', class: 'edit-icon'), edit_player_path(@profile[:player])
+        = link_to image_tag('edit.svg', class: 'edit-icon'), edit_player_path(@player)
       td[colspan="3"]
-        = link_to image_tag('delete.svg', class: 'delete-icon'), player_path(@profile[:player]), method: :delete, data: { confirm: 'Are you sure?' }
-- @profile[:match_details].each_with_index do |match, index|
+        = link_to image_tag('delete.svg', class: 'delete-icon'), player_path(@player), method: :delete, data: { confirm: 'Are you sure?' }
+- @player.matches.each_with_index do |match, index|
   .player-match
     table.match-tbl
       thead
         tr
           th[colspan="5"]
-            = pretty_format_date(match[:match].updated_at)
+            = pretty_format_date(match.updated_at)
       tbody
         tr
-          - if match[:match].winner=='b'
+          - if match.winner=='b'
             td.thin.bg-blue[rowspan="4"]
             td.role.column.blue-text
               | ATTACK
@@ -67,21 +67,21 @@ table.player
             td.role.column.red-text
               | ATTACK
           td.match-score.column[rowspan="4"]
-            - if match[:match].winner=='b'
+            - if match.winner=='b'
               span.blue-text
-                =match[:match].blueGoal
+                =match.blueGoal
               | -
               span.red-text
-                = match[:match].redGoal
+                = match.redGoal
                 |     
             - else
               span.red-text
-                = match[:match].redGoal
+                = match.redGoal
               | -
               span.blue-text
-                = match[:match].blueGoal
+                = match.blueGoal
                 |     
-          - if match[:match].winner=='b'
+          - if match.winner=='b'
             td.role.align-right.column.red-text
               | ATTACK
             td.thin.bg-red[rowspan="4"]
@@ -90,18 +90,18 @@ table.player
               | ATTACK
             td.thin.bg-blue[rowspan="4"]
         tr
-          - if match[:match].winner=='b'
+          - if match.winner=='b'
             td.player-details
-              = match[:blue_atk].alias.upcase
+              = match.player_matches.where(position: 'atk', team:'b').take.player.alias.upcase
             td.player-details.align-right
-              = match[:red_atk].alias.upcase
+              = match.player_matches.where(position: 'atk', team: 'r').take.player.alias.upcase
           - else
             td.player-details
-              = match[:red_atk].alias.upcase
+              = match.player_matches.where(position: 'atk', team: 'r').take.player.alias.upcase
             td.player-details.align-right
-              = match[:blue_atk].alias.upcase
+              = match.player_matches.where(position: 'atk', team:'b').take.player.alias.upcase
         tr
-          - if match[:match].winner=='b'
+          - if match.winner=='b'
             td.role.blue-text
               | DEFENSE
             td.role.align-right.red-text
@@ -112,13 +112,13 @@ table.player
             td.role.align-right.blue-text
               | DEFENSE
         tr
-          - if match[:match].winner=='b'
+          - if match.winner=='b'
             td.player-details
-              = match[:blue_def].alias.upcase
+              = match.player_matches.where(position: 'def', team: 'b').take.player.alias.upcase
             td.player-details.align-right
-              = match[:red_def].alias.upcase
+              = match.player_matches.where(position: 'def', team: 'r').take.player.alias.upcase
           - else
             td.player-details
-              = match[:red_def].alias.upcase
+              = match.player_matches.where(position: 'def', team: 'r').take.player.alias.upcase
             td.player-details.align-right
-              = match[:blue_def].alias.upcase
+              = match.player_matches.where(position: 'def', team: 'b').take.player.alias.upcase

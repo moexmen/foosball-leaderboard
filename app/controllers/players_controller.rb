@@ -2,12 +2,11 @@ class PlayersController < ApplicationController
 	def index
 		active_tab
 		@players = Player.where(active: true)
-		@scores = Score.all
 	end
 
 	def show
 		active_tab
-    @profile = Player.get_profile_info(params[:id])
+		@player = Player.find(params[:id])
   end
 
 	def new

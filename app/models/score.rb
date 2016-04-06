@@ -52,8 +52,4 @@ class Score < ActiveRecord::Base
     end
   end
 
-  def self.get_score_info(player_id)
-    score = Score.where(:player_id => player_id).take!
-    return score
-  end
 end
