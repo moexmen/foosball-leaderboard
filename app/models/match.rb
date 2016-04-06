@@ -127,8 +127,4 @@ class Match < ActiveRecord::Base
     return json_hash
   end
 
-  def self.get_created_date 
-    match.created_at.strftime('%d %^b %Y')
-  end
-
 end

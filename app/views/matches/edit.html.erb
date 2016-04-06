@@ -5,20 +5,28 @@
     <!-- Red Team -->
     <div class="row">
       <span class="form-label">RED ATTACK</span>
-      <span><%= text_field_tag :redAtt, @match_detail['red_atk'], class: 'form-text' %></span>
+      <% selected_red_atk = @players.where(:name => @match_detail['red_atk']).take %>
+      <%= select_tag :redAtt, options_from_collection_for_select(@players, 'id', 'name', selected_red_atk.id ) %>
+      <!--<span><%#= text_field_tag :redAtt, @match_detail['red_atk'], class: 'form-text' %></span>-->
     </div>
     <div class="row">
       <span class="form-label">RED DEFENSE</span>
-      <span><%= text_field_tag :redDef, @match_detail['red_def'], class: 'form-text' %></span>
+      <% selected_red_def = @players.where(:name => @match_detail['red_def']).take %>
+      <%= select_tag :redDef, options_from_collection_for_select(@players, 'id', 'name', selected_red_def.id ) %>
+      <!--<span><%#= text_field_tag :redDef, @match_detail['red_def'], class: 'form-text' %></span>-->
     </div>
     <!-- Blue Team -->
     <div class="row">
       <span class="form-label">BLUE ATTACK</span>
-      <span><%= text_field_tag :blueAtt, @match_detail['blue_atk'], class: 'form-text' %></span>
+      <% selected_blue_att = @players.where(:name => @match_detail['blue_atk']).take %>
+      <%= select_tag :blueAtt, options_from_collection_for_select(@players, 'id', 'name', selected_blue_att.id ) %>
+      <!--<span><%#= text_field_tag :blueAtt, @match_detail['blue_atk'], class: 'form-text' %></span>-->
     </div>
     <div class="row">
       <span class="form-label">BLUE DEFENSE</span>
-      <span><%= text_field_tag :blueDef, @match_detail['blue_def'], class: 'form-text' %></span>
+      <% selected_blue_def = @players.where(:name => @match_detail['blue_def']).take %>
+      <%= select_tag :blueDef, options_from_collection_for_select(@players, 'id', 'name', selected_blue_def.id ) %>
+      <!--<span><%#= text_field_tag :blueDef, @match_detail['blue_def'], class: 'form-text' %></span>-->
     </div>
 
     <!-- Score -->

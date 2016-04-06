@@ -17,6 +17,7 @@ class MatchesController < ApplicationController
     active_tab
     @match = Match.find(params[:id])
     @match_detail = JSON.parse(Match.get_match_json(@match))
+    @players = Player.where(:active => true)
   end
 
   def create

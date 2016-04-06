@@ -10,7 +10,7 @@ class ScoresController < ApplicationController
     elsif session[:sort_tab] == 3
       @scores = sort_by_pull_ups
     else
-      @scores = sort_by_points
+      @scores = sort_by_wins
     end
 
     @html_option_string = ''
