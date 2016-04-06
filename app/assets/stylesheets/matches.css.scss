@@ -3,6 +3,24 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 @import 'variables';
 
+.selector {
+  float: right;
+  font-size: 12px;
+  height: 28px;
+  width: 157px;
+  margin-left: 10px;
+  color: $black;
+  -webkit-appearance: none;
+  appearance: none;
+
+  border: 1px solid $dark_grey;
+  border-radius: 2px;
+  background:url(arrow-down.svg) no-repeat 90%;
+  background-size: 12px;
+  padding-left: 8px;
+  margin-bottom: 10px;
+}
+
 .match-tbl {
   width: 100%;
   font-size: 17px;
