@@ -4,12 +4,12 @@
   <%= form_for :player, url: player_path(@player), method: :patch do |f| %>
   <div class="row">
 			<span class="form-label">NAME</span>
-			<span><%= f.text_field :name, class: 'form-text', autocomplete: :off %></span>
+			<span><%= f.text_field :name, class: 'form-text', maxlength: 20, autocomplete: :off %></span>
 		</div>
 
 		<div class="row">
 			<span class="form-label">ALIAS</span>
-			<span><%= f.text_field :alias, class: 'form-text', autocomplete: :off %></span>
+			<span><%= f.text_field :alias, class: 'form-text', maxlength: 5, autocomplete: :off %></span>
 		</div>
 
 		<div class="buttons">

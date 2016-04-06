@@ -4,17 +4,17 @@
 	<%= form_for :player, url: players_path do |f| %>
 		<div class="row">
 			<span class="form-label">NAME</span>
-			<span><%= f.text_field :name, class: 'form-text', autocomplete: :off %></span>
+			<span><%= f.text_field :name, class: 'form-text', maxlength: 20, autocomplete: :off %></span>
 		</div>
 
 		<div class="row">
 			<span class="form-label">ALIAS</span>
-			<span><%= f.text_field :alias, class: 'form-text', autocomplete: :off %></span>
+			<span><%= f.text_field :alias, class: 'form-text', maxlength: 5, autocomplete: :off %></span>
 		</div>
 
 		<div class="buttons">
 			<%= f.submit 'ADD', class: 'form-btn black-btn' %>
-			<a href="/players" class="form-btn grey-btn align-center">CANCEL</a>
+			<%= link_to 'CANCEL', players_path, class: 'form-btn grey-btn align-center' %>
 		</div>
 	<% end %>
 </div>
