@@ -1,8 +1,11 @@
+- @date_var = Date.new
+
 .title-bar
   span.title
     | MATCHES
   a.btn[href="/matches/new"]
     | ADD
+
 - @matches_details.each_with_index do |match, index|
   table.match-tbl
     thead
@@ -25,14 +28,14 @@
           - if match['winner']=='b'
             span.blue-text
               = match['blue_goal']
-            | &nbsp-&nbsp
+            | &nbsp;-&nbsp;
             span.red-text
               = match['red_goal']
               |    
           - else
             span.red-text
               = match['red_goal']
-            | &nbsp-&nbsp
+            | &nbsp;-&nbsp;
             span.blue-text
               = match['blue_goal']
               |    

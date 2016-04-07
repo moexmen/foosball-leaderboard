@@ -3,7 +3,6 @@ require 'json'
 class MatchesController < ApplicationController
   def index
     active_tab
-    @date_var = Date.new
     @matches_details = JSON.parse(Match.get_all_matches_json)
     @matches = Match.all
   end
