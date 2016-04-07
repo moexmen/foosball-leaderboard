@@ -1,6 +1,8 @@
 h1.title
   | ADD MATCH
 .form
+  - if @errors
+    = @errors[:goal]
   = form_tag(matches_path, :method=>'post') do
     
     .row
