@@ -39,8 +39,7 @@ class Match < ActiveRecord::Base
         self.red_att, self.red_def, self.blue_att, self.blue_def
     ]
 
-    update_pm_arr = PlayerMatch.where(:match_id => self.id)
-    update_pm_arr.each_with_index do |pm, index|
+    self.player_matches.each_with_index do |pm, index|
       pm.update(match_id: self.id, player_id: player_hash[index], team:pm.team, position: pm.position)
     end
 
@@ -49,28 +48,15 @@ class Match < ActiveRecord::Base
 
   before_destroy do
     remove_match_from_scoreboard
-
-    # destroy match object and playerMatch objects
-    player_matches_arr = PlayerMatch.where(:match_id => self.id)
-    player_matches_arr.each { |player_match| player_match.destroy }
+    self.player_matches.destroy
   end
 
   def remove_match_from_scoreboard
-    # remove this match instance from scoreboard
-    player_matches_arr = PlayerMatch.where(:match_id => self.id)
-    player_matches_arr.each { |player_match| Score.remove_match(self.id, player_match) }
+    self.player_matches.each { |player_match| Score.remove_match(self.id, player_match) }
   end
 
   def get_winner
     self.redGoal > self.blueGoal ? 'r' : 'b'
-  end
-
-  def self.get_player_matches(player)
-    get_matches_arr(player.matches)
-  end
-
-  def self.get_all_matches_arr
-    return get_matches_arr(Match.all)
   end
 
   def add_players_for_match(red_att, red_def, blue_att, blue_def)
@@ -80,52 +66,4 @@ class Match < ActiveRecord::Base
     self.blue_def = blue_def
   end
 
-  # helpers
-  def self.get_matches_arr(matches)
-    # @return matches array
-    match_info_arr = []
-    matches.each do |match|
-      match_info_arr.push(get_match_hash(match))
-    end
-    return match_info_arr
-  end
-
-  def self.get_player_from_pm(players, pm)
-    players.each do |player|
-      if pm.player_id == player.id
-        return player
-      end
-    end
-  end
-
-  def self.get_match_hash(match)
-    # @return single match hash
-    player_matches = match.player_matches
-    players = match.players
-    red_atk ||= []
-    red_def ||= []
-    blue_atk ||= []
-    blue_def ||= []
-
-    # find player with associated team and position
-    player_matches.each do |pm|
-      if pm.position == 'atk' and pm.team == 'r'
-        red_atk = get_player_from_pm(players, pm)
-      elsif pm.position == 'atk' and pm.team == 'b'
-        blue_atk = get_player_from_pm(players, pm)
-      elsif pm.position == 'def' and pm.team == 'r'
-        red_def = get_player_from_pm(players, pm)
-      else
-        blue_def = get_player_from_pm(players, pm)
-      end
-    end
-    
-    match_hash = {
-        match: match,
-        red_atk: red_atk,
-        red_def: red_def,
-        blue_atk: blue_atk,
-        blue_def: blue_def
-    }
-  end
 end

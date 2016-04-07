@@ -12,8 +12,8 @@ class MatchesController < ApplicationController
   def edit
     # called upon submitting GET request
     active_tab
-    @match = Match.get_match_hash(Match.find(params[:id]))
-    @players = Player.where(:active => true)
+    @match = Match.find(params[:id])
+    @players = Player.where(active: true)
   end
 
   def create
