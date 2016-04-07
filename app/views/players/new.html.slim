@@ -1,8 +1,6 @@
 h1.title
   | ADD PLAYER
 .form
-  = form_for :player, url: players_path do |f|
-    = render partial: "player_form", locals: { f: f }
-    .buttons
-      = f.submit 'ADD', class: 'form-btn black-btn'
-      = link_to 'CANCEL', players_path, class: 'form-btn grey-btn align-center'
+  = render partial: 'form', locals: { player: @player, 
+                                             button_text: 'ADD',
+                                             redirect_url: players_path }
