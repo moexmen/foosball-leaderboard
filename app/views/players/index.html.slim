@@ -3,7 +3,7 @@
     | PLAYERS
   a.btn[href="/players/new"]
     | ADD
-- @players.each do |player|
+- @players.includes(:score).each do |player|
   = link_to (player_path(player)) do
     div
       table.player

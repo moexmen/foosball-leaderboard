@@ -1,20 +1,12 @@
-require 'json'
-
 class PlayersController < ApplicationController
 	def index
 		active_tab
 		@players = Player.where(active: true)
-		@scores = Score.all
 	end
 
 	def show
 		active_tab
 		@player = Player.find(params[:id])
-    profile_details = Player.get_profile_json(params[:id])
-    json_dict = JSON.parse(profile_details)
-
-    @score_details = JSON.parse(json_dict['score_details'])
-    @match_details = JSON.parse(json_dict['match_details'])
   end
 
 	def new

@@ -1,5 +1,6 @@
 class Match < ActiveRecord::Base
   has_many :player_matches
+  has_many :players, through: :player_matches
   attr_accessor :red_att
   attr_accessor :red_def
   attr_accessor :blue_att
@@ -38,8 +39,7 @@ class Match < ActiveRecord::Base
         self.red_att, self.red_def, self.blue_att, self.blue_def
     ]
 
-    update_pm_arr = PlayerMatch.where(:match_id => self.id)
-    update_pm_arr.each_with_index do |pm, index|
+    self.player_matches.each_with_index do |pm, index|
       pm.update(match_id: self.id, player_id: player_hash[index], team:pm.team, position: pm.position)
     end
 
@@ -48,42 +48,15 @@ class Match < ActiveRecord::Base
 
   before_destroy do
     remove_match_from_scoreboard
-
-    # destroy match object and playerMatch objects
-    player_matches_arr = PlayerMatch.where(:match_id => self.id)
-    player_matches_arr.each { |player_match| player_match.destroy }
+    self.player_matches.destroy
   end
 
   def remove_match_from_scoreboard
-    # remove this match instance from scoreboard
-    player_matches_arr = PlayerMatch.where(:match_id => self.id)
-    player_matches_arr.each { |player_match| Score.remove_match(self.id, player_match) }
+    self.player_matches.each { |player_match| Score.remove_match(self.id, player_match) }
   end
 
   def get_winner
     self.redGoal > self.blueGoal ? 'r' : 'b'
-  end
-
-  def self.get_player_matches_json(player_id)
-    # return json of matches
-    matches = []
-    single_pm_records = PlayerMatch.where(:player_id => player_id)
-    single_pm_records.each do |pm|
-      matches.push(Match.where(:id => pm.match_id).take!)
-    end
-
-    match_json_arr = get_json_from_matches_array(matches)
-
-    puts JSON.pretty_generate(match_json_arr)
-    return JSON.pretty_generate(match_json_arr)
-  end
-
-  def self.get_all_matches_json
-    return JSON.pretty_generate(get_json_from_matches_array(Match.all))
-  end
-
-  def self.get_match_json(match)
-    return JSON.pretty_generate(get_json_from_match(match))
   end
 
   def add_players_for_match(red_att, red_def, blue_att, blue_def)
@@ -93,46 +66,4 @@ class Match < ActiveRecord::Base
     self.blue_def = blue_def
   end
 
-  # helper
-  def self.get_json_from_matches_array(matches)
-    match_json_arr = []
-    matches.each do |match|
-      match_json_arr.push(get_json_from_match(match))
-    end
-    return match_json_arr
-  end
-
-  def self.get_json_from_match(match)
-    match_pm_records = PlayerMatch.where(:match_id => match.id)
-    # puts match_pm_records
-
-    # Setup json and append
-    red_atk = Player.find((match_pm_records.where(:position => 'atk', :team => 'r').take!).player_id)
-    red_def = Player.find((match_pm_records.where(:position => 'def', :team => 'r').take!).player_id)
-    blue_atk = Player.find((match_pm_records.where(:position => 'atk', :team => 'b').take!).player_id)
-    blue_def = Player.find((match_pm_records.where(:position=> 'def', :team => 'b').take!).player_id)
-
-    # red_atk_alias = Player.find((match_pm_records.where(:position => 'atk', :team => 'r').take!).player_id).alias
-    # blue_atk_alias = Player.find((match_pm_records.where(:position => 'atk', :team => 'b').take!).player_id).alias
-    # red_def_alias = Player.find((match_pm_records.where(:position => 'def', :team => 'r').take!).player_id).alias
-    # blue_def_alias = Player.find((match_pm_records.where(:position => 'def', :team => 'b').take!).player_id).alias
-
-    json_hash = {
-        :match_id => match.id,
-        :red_atk => red_atk.alias,
-        :red_def => red_def.alias,
-        :blue_atk => blue_atk.alias,
-        :blue_def => blue_def.alias,
-        # :red_atk_alias => red_atk_alias,
-        # :blue_atk_alias => blue_atk_alias,
-        # :red_def_alias => red_def_alias,
-        # :blue_def_alias => blue_def_alias,
-        :red_goal => match.redGoal,
-        :blue_goal => match.blueGoal,
-        :winner => match.winner,
-        :date => match.created_at.strftime('%d %^b %Y')
-    }
-
-    return json_hash
-  end
 end

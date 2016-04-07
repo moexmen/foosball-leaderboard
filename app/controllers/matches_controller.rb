@@ -1,16 +1,12 @@
-require 'json'
-
 class MatchesController < ApplicationController
   def index
     active_tab
-    @matches_details = JSON.parse(Match.get_all_matches_json)
     @matches = Match.all
   end
 
   def new
     active_tab
     @match = Match.new
-    @score_array = Array[*0..10]
     @players = Player.where(active: true)
   end
 
@@ -18,9 +14,7 @@ class MatchesController < ApplicationController
     # called upon submitting GET request
     active_tab
     @match = Match.find(params[:id])
-    @match_detail = JSON.parse(Match.get_match_json(@match))
-    @score_array = Array[*0..10]
-    @players = Player.where(:active => true)
+    @players = Player.where(active: true)
   end
 
   def create
