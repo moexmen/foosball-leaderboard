@@ -2,16 +2,7 @@ h1.title
   | EDIT PLAYER
 .form
   = form_for :player, url: player_path(@player), method: :patch do |f|
-    .row
-      span.form-label
-        | NAME
-      span
-        = f.text_field :name, class: 'form-text', maxlength: 20, autocomplete: :off
-    .row
-      span.form-label
-        | ALIAS
-      span
-        = f.text_field :alias, class: 'form-text', maxlength: 5, autocomplete: :off
+    = render partial: "player_form", locals: { f: f }
     .buttons
       = f.submit 'EDIT', class: 'form-btn black-btn'
       = link_to 'CANCEL', player_path(@player), class: 'form-btn grey-btn align-center'

@@ -6,29 +6,27 @@ h1.title
     .row
       span.form-label
         | RED ATTACK
-      = select_tag :redAtt, options_from_collection_for_select(@players, 'id', 'name', player_matches[0].player.id ), :class => 'selector'
+      = select_tag :redAtt, options_from_collection_for_select(@players, 'id', 'name', player_matches[0].player.id), class: 'selector'
     .row
       span.form-label
         | RED DEFENSE
-      = select_tag :redDef, options_from_collection_for_select(@players, 'id', 'name', player_matches[1].player.id ), :class => 'selector'
+      = select_tag :redDef, options_from_collection_for_select(@players, 'id', 'name', player_matches[1].player.id), class: 'selector'
     .row
       span.form-label
         | BLUE ATTACK
-      = select_tag :blueAtt, options_from_collection_for_select(@players, 'id', 'name', player_matches[2].player.id ), :class => 'selector'
+      = select_tag :blueAtt, options_from_collection_for_select(@players, 'id', 'name', player_matches[2].player.id), class: 'selector'
     .row
       span.form-label
         | BLUE DEFENSE
-      = select_tag :blueDef, options_from_collection_for_select(@players, 'id', 'name', player_matches[3].player.id ), :class => 'selector'
+      = select_tag :blueDef, options_from_collection_for_select(@players, 'id', 'name', player_matches[3].player.id), class: 'selector'
     .row
       span.form-label
         | RED SCORE
-      span
-        = select_tag 'redGoal', options_for_select([*0..10], @match.redGoal), class: 'selector'
+      = select_tag 'redGoal', options_for_select([*0..10], @match.redGoal), class: 'selector'
     .row
       span.form-label
         | BLUE SCORE
-      span
-        = select_tag 'blueGoal', options_for_select([*0..10], @match.blueGoal), class: 'selector'
+      = select_tag 'blueGoal', options_for_select([*0..10], @match.blueGoal), class: 'selector'
     .buttons
       = submit_tag 'EDIT', class: 'form-btn black-btn'
       = link_to 'CANCEL', matches_path, class: 'form-btn grey-btn align-center'

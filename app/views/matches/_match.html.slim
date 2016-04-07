@@ -1,0 +1,83 @@
+table.match-tbl
+  thead
+    tr
+      - if @date_var != pretty_format_date(match.created_at)
+        - @date_var = pretty_format_date(match.created_at)
+        th[colspan="5"]
+          = @date_var
+
+  tbody
+    tr
+      - if match.winner=='b'
+        td.thin.bg-blue[rowspan="4"]
+        td.role.column.blue-text
+          | ATTACK
+      - else
+        td.thin.bg-red[rowspan="4"]
+        td.role.column.red-text
+          | ATTACK
+      td.match-score.column[rowspan="4"]
+        - if match.winner=='b'
+          span.blue-text
+            = match.blueGoal
+          | -
+          span.red-text
+            = match.redGoal
+            |     
+        - else
+          span.red-text
+            = match.redGoal
+          | -
+          span.blue-text
+            = match.blueGoal
+            |     
+      - if match.winner=='b'
+        td.role.align-right.column.red-text
+          | ATTACK
+        td.thin.bg-red[rowspan="4"]
+      - else
+        td.role.align-right.column.blue-text
+          | ATTACK
+        td.thin.bg-blue[rowspan="4"]
+    tr
+      - player_matches = match.player_matches
+      - if match.winner=='b'
+        td.player-details
+          /blue_atk
+          = player_matches[2].player.alias.upcase
+        td.player-details.align-right
+          /red_atk
+          = player_matches[0].player.alias.upcase
+      - else
+        td.player-details
+          /red_atk
+          = player_matches[0].player.alias.upcase
+        td.player-details.align-right
+          /blue_atk
+          = player_matches[2].player.alias.upcase
+    tr
+      - if match.winner=='b'
+        td.role.blue-text
+          | DEFENSE
+        td.role.align-right.red-text
+          | DEFENSE
+      - else
+        td.role.red-text
+          | DEFENSE
+        td.role.align-right.blue-text
+          | DEFENSE
+    tr
+      - if match.winner=='b'
+        td.player-details
+          /blue_def
+          = player_matches[3].player.alias.upcase
+        td.player-details.align-right
+          /red_def
+          = player_matches[1].player.alias.upcase
+      - else
+        td.player-details
+          /red_def
+          = player_matches[1].player.alias.upcase
+        td.player-details.align-right
+          /blue_def
+          = player_matches[3].player.alias.upcase

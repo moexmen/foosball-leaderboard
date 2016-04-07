@@ -7,7 +7,6 @@
 // Index
 .player {
   width: 100%;
-  margin-bottom: 7px;
 
   thead {
     tr {
@@ -66,4 +65,14 @@
 
 .player-match {
   margin: 0 0 7px 0;
+}
+
+// Adds gap between players on index page
+.space {
+  height: 7px;
+  width: 100%;
+}
+
+.form-text {
+  padding-left: 5px;
 }
