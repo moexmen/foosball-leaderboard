@@ -10,6 +10,8 @@ class MatchesController < ApplicationController
   def new
     active_tab
     @match = Match.new
+    @score_array = Array[*0..10]
+    @players = Player.where(active: true)
   end
 
   def edit
@@ -17,6 +19,7 @@ class MatchesController < ApplicationController
     active_tab
     @match = Match.find(params[:id])
     @match_detail = JSON.parse(Match.get_match_json(@match))
+    @score_array = Array[*0..10]
     @players = Player.where(:active => true)
   end
 
