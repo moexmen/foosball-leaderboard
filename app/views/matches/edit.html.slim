@@ -1,5 +1,7 @@
 h1.title
   | EDIT MATCH
+  - if not @error.empty?
+    = @error
 .form
   = form_tag(match_path, :method=>'put') do
     - player_matches = @match.player_matches.includes(:player)

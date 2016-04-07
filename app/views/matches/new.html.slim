@@ -1,8 +1,8 @@
 h1.title
   | ADD MATCH
+  - if not @error.empty?
+    = @error
 .form
-  - if @errors
-    = @errors[:goal]
   = form_tag(matches_path, :method=>'post') do
     
     .row
