@@ -7,7 +7,7 @@ class PlayersController < ApplicationController
 	def show
 		active_tab
 		@player = Player.find(params[:id])
-  end
+	end
 
 	def new
 		active_tab
@@ -17,33 +17,35 @@ class PlayersController < ApplicationController
 	def create
 		@player = Player.new(player_params)
 		if @player.save
-      redirect_to players_path
-    else
-      puts @player.errors.messages
-      render :new
-    end
+			redirect_to players_path
+		else
+			puts @player.errors.messages
+			active_tab
+			render :new
+		end
 	end
 
 	def edit
 		active_tab
-	  @player = Player.find(params[:id])
+		@player = Player.find(params[:id])
 	end
 
 	def update
 		@player = Player.find(params[:id])
 
 		if @player.update(player_params)
-	  	redirect_to @player
+			redirect_to @player
 		else
+			active_tab
 			render :edit
 		end
 	end
 
 	def destroy
-	  @player = Player.find(params[:id])
-	  Player.inactive(@player)
+		@player = Player.find(params[:id])
+		Player.inactive(@player)
 
-	  redirect_to players_path
+		redirect_to players_path
 	end
 
 	def active_tab
