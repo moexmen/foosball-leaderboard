@@ -43,6 +43,25 @@ table {
   border-spacing: 0;
 }
 
+// Table edit and delete row
+.options {
+  width: 100%;
+  margin-bottom: 7px;
+
+  tbody {
+    tr {
+      font-size: 0;
+      background: $grey;
+      text-align: center;
+
+      td {
+        width: 50%;
+        padding: 7px 0;
+      }
+    }
+  }
+}
+
 //Header
 .header {
   padding: 12px 0 12px 18px;
@@ -121,26 +140,26 @@ table {
     position: relative;
     height: 72px;
     line-height: 72px;
+  }
+  
+  .btn {
+    position: absolute;
+    right: 0;
+    display: inline;
+    line-height: normal;
+    vertical-align: middle;
+    font: 700 10px Lato;
+    color: $dark_grey;
+    letter-spacing: 1.6px;
+    border-radius: 3px;
+    border: 2px solid $dark_grey;
+    margin: 24px 0px 0px 0px;
+    padding: 6px 26px 6px 26px;
+    text-decoration: none;
 
-    .btn {
-      position: absolute;
-      right: 0;
-      display: inline;
-      line-height: normal;
-      vertical-align: middle;
-      font: 700 10px Lato;
-      color: $dark_grey;
-      letter-spacing: 1.6px;
-      border-radius: 3px;
-      border: 2px solid $dark_grey;
-      margin: 24px 0px 0px 0px;
-      padding: 6px 26px 6px 26px;
-      text-decoration: none;
-
-      &:hover {
-        background: $dark_grey;
-        color: $white;
-      }
+    &:hover {
+      background: $dark_grey;
+      color: $white;
     }
   }
 }

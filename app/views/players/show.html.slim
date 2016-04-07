@@ -3,135 +3,17 @@
     | PROFILE
   a.btn[href="/players"]
     | BACK
-table.player
-  thead
-    tr
-      th.align-left[colspan="5"]
-        = @player.name.upcase
-      th.align-right.light
-        = @player.alias
+
+= render partial: "player", object: @player
+
+table.options
   tbody
-    tr.spacer
-      td[colspan="6"]
     tr
-      td.dark-grey.align-right.stat
-        | WINS
-      td.bar.bg-blue[rowspan="3"]
-      td.black.align-left.pad-left.score
-        = @player.score.wins
-      td.dark-grey.align-right.stat
-        | GOALS
-      td.bar.bg-red[rowspan="3"]
-      td.black.align-left.pad-left.score
-        = @player.score.goals
-    tr
-      td.dark-grey.align-right.stat
-        | LOSES
-      td.black.align-left.pad-left.score
-        = @player.score.loses
-      td.dark-grey.align-right.stat
-        | WIN RATIO
-      td.black.align-left.pad-left.score
-        = @player.score.wRatio.round(2)
-    tr
-      td.dark-grey.align-right.stat
-        | POINTS
-      td.black.align-left.pad-left.score
-        = @player.score.points
-      td.dark-grey.align-right.stat
-        | PULL-UPS
-      td.black.align-left.pad-left.score
-        = @player.score.pullUps
-    tr.spacer
-      td[colspan="6"]
-    tr.options
-      td[colspan="3"]
+      td
         = link_to image_tag('edit.svg', class: 'edit-icon'), edit_player_path(@player)
-      td[colspan="3"]
+      td
         = link_to image_tag('delete.svg', class: 'delete-icon'), player_path(@player), method: :delete, data: { confirm: 'Are you sure?' }
 
-- @player.matches.includes(:player_matches, :players).each do |match|
+- @player.matches.includes(:player_matches, :players).reverse_each do |match|
   .player-match
-    table.match-tbl
-      thead
-        tr
-          - if @date_var != pretty_format_date(match.created_at)
-            - @date_var = pretty_format_date(match.created_at)
-            th[colspan="5"]
-              = @date_var
-
-      tbody
-        tr
-          - if match.winner=='b'
-            td.thin.bg-blue[rowspan="4"]
-            td.role.column.blue-text
-              | ATTACK
-          - else
-            td.thin.bg-red[rowspan="4"]
-            td.role.column.red-text
-              | ATTACK
-          td.match-score.column[rowspan="4"]
-            - if match.winner=='b'
-              span.blue-text
-                = match.blueGoal
-              | -
-              span.red-text
-                = match.redGoal
-                |    
-            - else
-              span.red-text
-                = match.redGoal
-              | -
-              span.blue-text
-                = match.blueGoal
-                |    
-          - if match.winner=='b'
-            td.role.align-right.column.red-text
-              | ATTACK
-            td.thin.bg-red[rowspan="4"]
-          - else
-            td.role.align-right.column.blue-text
-              | ATTACK
-            td.thin.bg-blue[rowspan="4"]
-        tr
-          - player_matches = match.player_matches
-          - if match.winner=='b'
-            td.player-details
-              /blue_atk
-              = player_matches[2].player.alias.upcase
-            td.player-details.align-right
-              /red_atk
-              = player_matches[0].player.alias.upcase
-          - else
-            td.player-details
-              /red_atk
-              = player_matches[0].player.alias.upcase
-            td.player-details.align-right
-              /blue_atk
-              = player_matches[2].player.alias.upcase
-        tr
-          - if match.winner=='b'
-            td.role.blue-text
-              | DEFENSE
-            td.role.align-right.red-text
-              | DEFENSE
-          - else
-            td.role.red-text
-              | DEFENSE
-            td.role.align-right.blue-text
-              | DEFENSE
-        tr
-          - if match.winner=='b'
-            td.player-details
-              /blue_def
-              = player_matches[3].player.alias.upcase
-            td.player-details.align-right
-              /red_def
-              = player_matches[1].player.alias.upcase
-          - else
-            td.player-details
-              /red_def
-              = player_matches[1].player.alias.upcase
-            td.player-details.align-right
-              /blue_def
-              = player_matches[3].player.alias.upcase
+    = render partial: "matches/match", object: match
