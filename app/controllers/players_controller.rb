@@ -16,9 +16,12 @@ class PlayersController < ApplicationController
 
 	def create
 		@player = Player.new(player_params)
-		@player.save
-
-		redirect_to players_path
+		if @player.save
+      redirect_to players_path
+    else
+      puts @player.errors.messages
+      render :new
+    end
 	end
 
 	def edit
@@ -29,8 +32,11 @@ class PlayersController < ApplicationController
 	def update
 		@player = Player.find(params[:id])
 
-	  @player.update(player_params)
-	  redirect_to @player
+		if @player.update(player_params)
+	  	redirect_to @player
+		else
+			render :edit
+		end
 	end
 
 	def destroy

@@ -27,6 +27,7 @@ h1.title
       span.form-label
         | BLUE SCORE
       = select_tag 'blueGoal', options_for_select([*0..10], @match.blueGoal), class: 'selector'
+
     .buttons
       = submit_tag 'EDIT', class: 'form-btn black-btn'
       = link_to 'CANCEL', matches_path, class: 'form-btn grey-btn align-center'

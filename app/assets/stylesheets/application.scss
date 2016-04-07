@@ -262,3 +262,23 @@ table {
   width: 15px;
   cursor: pointer;
 }
+
+// Removes display: block on fields with error
+.field_with_errors {
+  display: inherit;
+
+  color: $red;
+  float: right;
+  font-size: 12px;
+  //padding: 5px 5px 0 0;
+
+  .form-text {
+    border-color: $red;
+  }
+}
+
+.error-msg {
+  color: $red;
+  float: right;
+  padding-right: 5px;
+}

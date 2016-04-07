@@ -4,11 +4,17 @@
       | NAME
     span
       = f.text_field :name, class: 'form-text', maxlength: 20, autocomplete: :off
+      - if @player.errors[:name]
+        span.error-msg
+          = @player.errors[:name].join(', ')
   .row
     span.form-label
       | ALIAS
     span
       = f.text_field :alias, class: 'form-text', maxlength: 5, autocomplete: :off
+      - if @player.errors[:alias]
+      span.error-msg
+          = @player.errors[:alias].join(', ')
       
   .buttons
     = f.submit button_text, class: 'form-btn black-btn'

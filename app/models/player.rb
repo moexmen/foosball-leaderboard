@@ -2,6 +2,8 @@ class Player < ActiveRecord::Base
   has_one :score, dependent: :destroy
   has_many :matches, through: :player_matches
   has_many :player_matches
+  validates :name, presence: { message: "Required" }
+  validates :alias, presence: { message: "Required" }
 
   after_create do
     # generate score record
