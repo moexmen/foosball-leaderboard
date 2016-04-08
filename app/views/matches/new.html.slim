@@ -1,34 +1,62 @@
 h1.title
   | ADD MATCH
-  - if not @error.empty?
-    = @error
+
+- if @error.present?
+  - player_err = @error[:player] if @error[:player].present? 
+  - goal_err = @error[:goal] if @error[:goal].present?
+  - blank_err = @error[:blanks]
+  
+- blank_err ||= [] 
+- classes = ['selector']
+
 .form
-  = form_tag(matches_path, :method=>'post') do
+  = form_tag(matches_path, method: 'post') do
     
     .row
       span.form-label
         | RED ATTACK
-      = select_tag :redAtt, options_from_collection_for_select(@players, 'id', 'name'), include_blank: true, class: 'selector'
+      - classes.push('red-border') if (blank_err.any? && blank_err[0] == 'true') || player_err.present?
+      = select_tag :redAtt, options_from_collection_for_select(@players, 'id', 'name'), include_blank: true, class: classes
+      - classes.delete_at(1) if classes.size > 1
     .row
       span.form-label
         | RED DEFENSE
-      = select_tag :redDef, options_from_collection_for_select(@players, 'id', 'name'), include_blank: true, class: 'selector'
+      - classes.push('red-border') if (blank_err.any? && blank_err[1] == 'true') || player_err.present?
+      = select_tag :redDef, options_from_collection_for_select(@players, 'id', 'name'), include_blank: true, class: classes
+      - classes.delete_at(1) if classes.size > 1
     .row
       span.form-label
         | BLUE ATTACK
-      = select_tag :blueAtt, options_from_collection_for_select(@players, 'id', 'name'), include_blank: true, class: 'selector'
+      - classes.push('red-border') if (blank_err.any? && blank_err[2] == 'true') || player_err.present?
+      = select_tag :blueAtt, options_from_collection_for_select(@players, 'id', 'name'), include_blank: true, class: classes
+      - classes.delete_at(1) if classes.size > 1
     .row
       span.form-label
         | BLUE DEFENSE
-      = select_tag :blueDef, options_from_collection_for_select(@players, 'id', 'name'), include_blank: true, class: 'selector'
+      - classes.push('red-border') if (blank_err.any? && blank_err[3] == 'true') || player_err.present?
+      = select_tag :blueDef, options_from_collection_for_select(@players, 'id', 'name'), include_blank: true, class: classes
+      - classes.delete_at(1) if classes.size > 1
     .row
       span.form-label
         | RED SCORE
-      = select_tag 'redGoal', options_for_select([*0..10]), include_blank: true, class: 'selector'
+      - classes.push('red-border') if (blank_err.any? && blank_err[4] == 'true') || goal_err.present?
+      = select_tag 'redGoal', options_for_select([*0..10]), include_blank: true, class: classes
+      - classes.delete_at(1) if classes.size > 1
     .row
       span.form-label
         | BLUE SCORE
-      = select_tag 'blueGoal', options_for_select([*0..10]), include_blank: true, class: 'selector'
+      - classes.push('red-border') if (blank_err.any? && blank_err[5] == 'true') || goal_err.present?
+      = select_tag 'blueGoal', options_for_select([*0..10]), include_blank: true, class: classes
+      - classes.delete_at(1) if classes.size > 1
+      
+    .match-error
+      p 
+        = player_err
+      p
+        = goal_err
+      p
+        = 'All fields are required' if blank_err.any?
+    
     .buttons
       = submit_tag 'ADD', class: 'form-btn black-btn'
       = link_to 'CANCEL', matches_path, class: 'form-btn grey-btn align-center'

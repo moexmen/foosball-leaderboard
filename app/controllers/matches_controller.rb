@@ -84,17 +84,20 @@ class MatchesController < ApplicationController
     check_goal(match_params[:redGoal].to_i, match_params[:blueGoal].to_i)
 
     error = {}
-    error[:goal] = false if @goal_check
-    error[:player] = false if @player_check
+    if @selected_fields == 6
+      error[:goal] = false if @goal_check
+      error[:player] = false if @player_check
+    end
     error[:blanks] = @blanks if @selected_fields < 6
     error
   end
 
   def check_selected (field, name)
     if field.present?
+      @blanks.push(false)
       true
     else
-      @blanks.push(name)
+      @blanks.push(true)
       false
     end
   end
@@ -118,9 +121,9 @@ class MatchesController < ApplicationController
 
   def check_for_error_params
     error = {}
-    error[:goal] = 'Goals is invalid' if params.key?('goal')
+    error[:goal] = 'A team must have 10 goals' if params.key?('goal')
     error[:player] = 'Duplicate players not allowed' if params.key?('player')
-    error[:blanks] = params[:blanks]
+    error[:blanks] = params[:blanks] if params.key?('blanks')
     error
   end
 end

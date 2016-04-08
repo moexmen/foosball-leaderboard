@@ -1,34 +1,57 @@
 h1.title
   | EDIT MATCH
-  - if not @error.empty?
-    = @error
+
+- if @error.present?
+  - player_err = @error[:player] if @error[:player].present? 
+  - goal_err = @error[:goal] if @error[:goal].present?  
+
+- classes = ['selector']
+
 .form
-  = form_tag(match_path, :method=>'put') do
+  = form_tag(match_path, method: 'put') do
     - player_matches = @match.player_matches.includes(:player)
     .row
       span.form-label
         | RED ATTACK
-      = select_tag :redAtt, options_from_collection_for_select(@players, 'id', 'name', player_matches[0].player.id), class: 'selector'
+      - classes.push('red-border') if player_err.present?
+      = select_tag :redAtt, options_from_collection_for_select(@players, 'id', 'name', player_matches[0].player.id), class: classes
+      - classes.delete_at(1) if classes.size > 1
     .row
       span.form-label
         | RED DEFENSE
-      = select_tag :redDef, options_from_collection_for_select(@players, 'id', 'name', player_matches[1].player.id), class: 'selector'
+      - classes.push('red-border') if player_err.present?
+      = select_tag :redDef, options_from_collection_for_select(@players, 'id', 'name', player_matches[1].player.id), class: classes
+      - classes.delete_at(1) if classes.size > 1
     .row
       span.form-label
         | BLUE ATTACK
-      = select_tag :blueAtt, options_from_collection_for_select(@players, 'id', 'name', player_matches[2].player.id), class: 'selector'
+      - classes.push('red-border') if player_err.present?
+      = select_tag :blueAtt, options_from_collection_for_select(@players, 'id', 'name', player_matches[2].player.id), class: classes
+      - classes.delete_at(1) if classes.size > 1
     .row
       span.form-label
         | BLUE DEFENSE
-      = select_tag :blueDef, options_from_collection_for_select(@players, 'id', 'name', player_matches[3].player.id), class: 'selector'
+      - classes.push('red-border') if player_err.present?
+      = select_tag :blueDef, options_from_collection_for_select(@players, 'id', 'name', player_matches[3].player.id), class: classes
+      - classes.delete_at(1) if classes.size > 1
     .row
       span.form-label
         | RED SCORE
-      = select_tag 'redGoal', options_for_select([*0..10], @match.redGoal), class: 'selector'
+      - classes.push('red-border') if goal_err.present?
+      = select_tag 'redGoal', options_for_select([*0..10], @match.redGoal), class: classes
+      - classes.delete_at(1) if classes.size > 1
     .row
       span.form-label
         | BLUE SCORE
-      = select_tag 'blueGoal', options_for_select([*0..10], @match.blueGoal), class: 'selector'
+      - classes.push('red-border') if goal_err.present?
+      = select_tag 'blueGoal', options_for_select([*0..10], @match.blueGoal), class: classes
+      - classes.delete_at(1) if classes.size > 1
+
+    .match-error
+      p 
+        = player_err
+      p
+        = goal_err
 
     .buttons
       = submit_tag 'EDIT', class: 'form-btn black-btn'
