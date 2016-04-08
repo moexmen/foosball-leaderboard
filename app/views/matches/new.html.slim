@@ -8,27 +8,27 @@ h1.title
     .row
       span.form-label
         | RED ATTACK
-      = select_tag :redAtt, options_from_collection_for_select(@players, 'id', 'name'), include_blank: "Select", class: 'selector'
+      = select_tag :redAtt, options_from_collection_for_select(@players, 'id', 'name'), include_blank: true, class: 'selector'
     .row
       span.form-label
         | RED DEFENSE
-      = select_tag :redDef, options_from_collection_for_select(@players, 'id', 'name'), include_blank: "Select", class: 'selector'
+      = select_tag :redDef, options_from_collection_for_select(@players, 'id', 'name'), include_blank: true, class: 'selector'
     .row
       span.form-label
         | BLUE ATTACK
-      = select_tag :blueAtt, options_from_collection_for_select(@players, 'id', 'name'), include_blank: "Select", class: 'selector'
+      = select_tag :blueAtt, options_from_collection_for_select(@players, 'id', 'name'), include_blank: true, class: 'selector'
     .row
       span.form-label
         | BLUE DEFENSE
-      = select_tag :blueDef, options_from_collection_for_select(@players, 'id', 'name'), include_blank: "Select", class: 'selector'
+      = select_tag :blueDef, options_from_collection_for_select(@players, 'id', 'name'), include_blank: true, class: 'selector'
     .row
       span.form-label
         | RED SCORE
-      = select_tag 'redGoal', options_for_select([*0..10]), include_blank: "Score", class: 'selector'
+      = select_tag 'redGoal', options_for_select([*0..10]), include_blank: true, class: 'selector'
     .row
       span.form-label
         | BLUE SCORE
-      = select_tag 'blueGoal', options_for_select([*0..10]), include_blank: "Score", class: 'selector'
+      = select_tag 'blueGoal', options_for_select([*0..10]), include_blank: true, class: 'selector'
     .buttons
       = submit_tag 'ADD', class: 'form-btn black-btn'
       = link_to 'CANCEL', matches_path, class: 'form-btn grey-btn align-center'
