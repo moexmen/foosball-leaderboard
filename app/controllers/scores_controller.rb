@@ -24,7 +24,7 @@ class ScoresController < ApplicationController
   end
 
   def sort_by_points
-    Score.includes(:player).sort_by { |s| [s.points] }.reverse!
+    Score.includes(:player).sort_by { |s| s.points }.reverse!
   end
 
   def sort_by_goals

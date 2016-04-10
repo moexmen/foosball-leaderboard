@@ -8,14 +8,14 @@ class MatchesController < ApplicationController
   def new
     active_tab
     @match = Match.new
-    @players = Player.where(active: true)
+    @players = Player.where(active: true).sort_by { |p| p.name }
     @error = check_for_error_params
   end
 
   def edit
     active_tab
     @match = Match.find(params[:id])
-    @players = Player.where(active: true)
+    @players = Player.where(active: true).sort_by { |p| p.name }
     @error = check_for_error_params
   end
 
