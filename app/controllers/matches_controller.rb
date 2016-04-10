@@ -69,37 +69,27 @@ class MatchesController < ApplicationController
   end
 
   def validation
-    @selected_fields = 0;
+    error = {}
     @goal_check = false
     @player_check = false
     @blanks = []
 
-    params_list = ['redAtt', 'redDef', 'blueAtt', 'blueDef', 'redGoal', 'blueGoal']
+    params_list = %w[redAtt redDef blueAtt blueDef redGoal blueGoal]
+    params_list.each { |p| check_selected(match_params[p]) }
 
-    params_list.each do |p|
-      @selected_fields += 1 if check_selected(match_params[p], p)
-    end
-
-    check_players([match_params[:redAtt], match_params[:redDef], match_params[:blueAtt], match_params[:blueDef]])
-    check_goal(match_params[:redGoal].to_i, match_params[:blueGoal].to_i)
-
-    error = {}
-    if @selected_fields == 6
+    if @blanks.count(true) == 6
+      check_goal(match_params[:redGoal].to_i, match_params[:blueGoal].to_i)
+      check_players([match_params[:redAtt], match_params[:redDef], match_params[:blueAtt], match_params[:blueDef]])
       error[:goal] = false if @goal_check
       error[:player] = false if @player_check
     end
-    error[:blanks] = @blanks if @selected_fields < 6
+
+    error[:blanks] = @blanks if @blanks.count(true) < 6
     error
   end
 
-  def check_selected (field, name)
-    if field.present?
-      @blanks.push(false)
-      true
-    else
-      @blanks.push(true)
-      false
-    end
+  def check_selected (field)
+    field.present? ? @blanks.push(true) : @blanks.push(false)
   end
 
   def check_goal (goal1, goal2)
@@ -116,6 +106,7 @@ class MatchesController < ApplicationController
       other_players = players.clone
       other_players.delete_at(players.index(p))
       @player_check = other_players.include?(p)
+      break if @player_check
     end
   end
 
