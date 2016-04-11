@@ -7,5 +7,4 @@ class PlayerMatch < ActiveRecord::Base
   def update_player_score
     Score.update_player_score(self.match_id, self)
   end
-
 end

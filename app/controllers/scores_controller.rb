@@ -20,19 +20,19 @@ class ScoresController < ApplicationController
   end
 
   def sort_by_wins
-    Score.includes(:player).sort { |s1, s2| s2.wins <=> s1.wins}
+    Score.includes(:player).sort_by { |s| [s.wins, s.points] }.reverse!
   end
 
   def sort_by_points
-    Score.includes(:player).sort { |s1, s2| s2.points <=> s1.points}
+    Score.includes(:player).sort_by { |s| s.points }.reverse!
   end
 
   def sort_by_goals
-    Score.includes(:player).sort { |s1, s2| s2.goals <=> s1.goals}
+    Score.includes(:player).sort_by { |s| [s.goals, s.points] }.reverse!
   end
 
   def sort_by_pull_ups
-    Score.includes(:player).sort { |s1, s2| s2.pullUps <=> s1.pullUps}
+    Score.includes(:player).sort_by { |s| [s.pullUps, s.points] }.reverse!
   end
 
   def active_tab

@@ -1,4 +1,5 @@
 class MatchesController < ApplicationController
+  include MatchValidation
   def index
     active_tab
     @matches = Match.all
@@ -7,42 +8,43 @@ class MatchesController < ApplicationController
   def new
     active_tab
     @match = Match.new
-    @players = Player.where(active: true)
+    @players = Player.where(active: true).sort_by { |p| p.name }
+    @error = check_for_error_params
   end
 
   def edit
-    # called upon submitting GET request
     active_tab
     @match = Match.find(params[:id])
-    @players = Player.where(active: true)
+    @players = Player.where(active: true).sort_by { |p| p.name }
+    @error = check_for_error_params
   end
 
   def create
     @match = Match.new(redGoal: match_params[:redGoal], blueGoal: match_params[:blueGoal], winner: match_params[:winner])
-    update_players_for_match
 
-    if @match.save
-      # successful validations
+    if validate(match_params).empty?
+      update_players_for_match
+      @match.save
       redirect_to matches_path
     else
-      render 'new'
+      redirect_to new_match_path(validate(match_params))
     end
   end
 
   def update
-    # called upon submitting a PATCH request through edit
     @match = Match.find(params[:id])
-    update_players_for_match
-    update_hash = {
-        redGoal: match_params[:redGoal],
-        blueGoal: match_params[:blueGoal],
-        winner: match_params[:winner]
-    }
 
-    if @match.update(update_hash)
+    if validate(match_params).empty?
+      update_hash = {
+          redGoal: match_params[:redGoal],
+          blueGoal: match_params[:blueGoal],
+          winner: match_params[:winner]
+      }
+      update_players_for_match
+      @match.update(update_hash)
       redirect_to matches_path
     else
-      render 'edit'
+      redirect_to action: :edit, id: @match.id, params: validate(match_params)
     end
   end
 
@@ -63,9 +65,15 @@ class MatchesController < ApplicationController
     params.permit(:redAtt, :redDef, :blueAtt, :blueDef, :redGoal, :blueGoal, )
   end
 
-  private
   def update_players_for_match
     @match.add_players_for_match(match_params[:redAtt], match_params[:redDef], match_params[:blueAtt], match_params[:blueDef])
   end
 
+  def check_for_error_params
+    error = {}
+    error[:goal] = 'A team must have 10 goals' if params.key?('goal')
+    error[:player] = 'Duplicate players not allowed' if params.key?('player')
+    error[:blanks] = params[:blanks] if params.key?('blanks')
+    error
+  end
 end
