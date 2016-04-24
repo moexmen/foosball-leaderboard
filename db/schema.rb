@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(version: 20160402122345) do
     t.integer  "goals",      null: false
     t.float    "wRatio",     null: false
     t.integer  "pullUps",    null: false
+    t.integer  "win_streak", null: false
     t.integer  "player_id",  null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

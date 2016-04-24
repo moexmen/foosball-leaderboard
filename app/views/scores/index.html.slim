@@ -9,15 +9,13 @@ select#sort_score_id.sort.selector[name="sort_score"]
   |  <option value="points" 
   = @sort_by == 'points' ? "selected" : ""
   |  >Points
-  |  <option value="goals" 
-  = @sort_by == 'goals' ? "selected" : ""
-  |  >Goals
-  |  <option value="pull-ups" 
-  = @sort_by == 'pull-ups' ? "selected" : ""
-  |  >Pull-ups
   | <option value="win-ratio"
   = @sort_by == 'win-ratio' ? "selected" : ""
-  | >Win Ratio
+  | >Ratio
+  |  <option value="win-streak"
+  = @sort_by == 'win-streak' ? "selected" : ""
+  |  >Streak
+
 table.scoreboard
   colgroup
     col[style="width: 10%"]
@@ -40,9 +38,9 @@ table.scoreboard
       th
         | Pts
       th
-        | G
+        | R
       th
-        | P
+        | S
   tbody
     - @scores.each.with_index do |score, i|
       tr.spacer
@@ -58,6 +56,6 @@ table.scoreboard
         td
           = score.points
         td
-          = score.goals
+          = score.wRatio
         td
-          = score.pullUps
+          = score.win_streak
