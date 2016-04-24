@@ -9,7 +9,6 @@ class Score < ActiveRecord::Base
       # remove wins, loses, points and update streak
       (match.winner == player_match.team) ? score.wins -= 1 : score.loses -= 1
       (match.winner == player_match.team) ? score.points -= 3 : score.points -= 1
-      score.win_streak = compute_win_streak(score.player_id)
 
       # remove goals
       (player_match.team == 'r') ? score.goals -= match.redGoal : score.goals -= match.blueGoal
@@ -36,7 +35,6 @@ class Score < ActiveRecord::Base
       # update wins, loses, points and streaks
       (match.winner == player_match.team) ? score.wins += 1 : score.loses += 1
       (match.winner == player_match.team) ? score.points += 3 : score.points += 1
-      score.win_streak = compute_win_streak(score.player_id)
 
       # update goals
       (player_match.team == 'r') ? score.goals += match.redGoal : score.goals += match.blueGoal
@@ -59,6 +57,17 @@ class Score < ActiveRecord::Base
     Score.all.each do |score|
       score.win_streak = compute_win_streak(score.player.id)
       score.save
+    end
+
+    update_longest_ws
+  end
+
+  def self.update_longest_ws
+    Score.all.each do |score|
+      if score.win_streak > score.longest_win_streak
+        score.longest_win_streak = score.win_streak
+        score.save
+      end
     end
   end
 

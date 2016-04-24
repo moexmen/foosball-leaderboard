@@ -28,6 +28,8 @@ class Match < ActiveRecord::Base
         PlayerMatch.create(match_id: self.id, player_id: item, team:key[0], position: player_pos)
       end
     end
+
+    Score.update_win_streak
   end
 
   before_update do
