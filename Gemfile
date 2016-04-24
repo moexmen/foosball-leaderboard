@@ -48,9 +48,9 @@ group :development do
 end
 
 group :production do
-  # Install postgresql
+  # Postgres database
   gem 'pg'
 
-  # Install puma for application server
+  # Application server
   gem 'puma'
 end

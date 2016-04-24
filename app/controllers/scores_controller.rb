@@ -13,6 +13,8 @@ class ScoresController < ApplicationController
         @scores = sort_by_goals
       when 'pull-ups'
         @scores = sort_by_pull_ups
+      when 'win-ratio'
+        @scores = sort_by_win_ratio
       else
         @scores = sort_by_wins
     end
@@ -33,6 +35,10 @@ class ScoresController < ApplicationController
 
   def sort_by_pull_ups
     Score.includes(:player).sort_by { |s| [s.pullUps, s.points] }.reverse!
+  end
+
+  def sort_by_win_ratio
+    Score.includes(:player).sort_by { |s| [s.wRatio, s.points]}.reverse!
   end
 
   def active_tab

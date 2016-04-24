@@ -15,6 +15,9 @@ select#sort_score_id.sort.selector[name="sort_score"]
   |  <option value="pull-ups" 
   = @sort_by == 'pull-ups' ? "selected" : ""
   |  >Pull-ups
+  | <option value="win-ratio"
+  = @sort_by == 'win-ratio' ? "selected" : ""
+  | >Win Ratio
 table.scoreboard
   colgroup
     col[style="width: 10%"]
