@@ -1,6 +1,7 @@
 // Place all the styles related to the players controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+// scss-lint:disable NestingDepth, PropertySortOrder, LeadingZero, SelectorDepth
 @import 'variables';
 @import 'matches';
 
@@ -12,11 +13,11 @@
     tr {
       background: $grey;
       color: $black;
+    }
 
-      th {
-        font-size: 1.3em;
-        padding: 5px 10px;
-      }
+    th {
+      font-size: 1.3em;
+      padding: 5px 10px;
     }
   }
 
@@ -24,11 +25,11 @@
     tr {
       background: $light-grey;
       font-size: 15px;
+    }
 
-      td {
-        padding: 7px 0;
-        letter-spacing: 0.7px;
-      }
+    td {
+      padding: 7px 0;
+      letter-spacing: 0.7px;
     }
 
     .bar {
@@ -64,7 +65,7 @@
 }
 
 .player-match {
-  margin: 0 0 7px 0;
+  margin: 0 0 7px;
 }
 
 // Adds gap between players on index page

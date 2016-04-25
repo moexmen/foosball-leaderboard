@@ -6,7 +6,7 @@ class Score < ActiveRecord::Base
     match = Match.find(match_id)
 
     if Score.exists?(player_id: player_match.player_id)
-      score = Score.where(:player_id => player_match.player_id).take!
+      score = Score.where(player_id: player_match.player_id).take!
 
       # remove wins, loses, points and update streak
       (match.winner == player_match.team) ? score.wins -= 1 : score.loses -= 1
@@ -73,7 +73,6 @@ class Score < ActiveRecord::Base
     end
   end
 
-
   def self.compute_win_streak(player_id)
     p_matches = Player.find(player_id).player_matches
     win_streak = 0
@@ -90,6 +89,7 @@ class Score < ActiveRecord::Base
   end
 
   private
+
   def set_defaults
     self.wins ||= 0
     self.loses ||= 0
@@ -100,5 +100,4 @@ class Score < ActiveRecord::Base
     self.win_streak ||= 0
     self.longest_win_streak ||= 0
   end
-
 end

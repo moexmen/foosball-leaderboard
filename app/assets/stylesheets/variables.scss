@@ -1,19 +1,29 @@
+// scss-lint:disable VendorPrefix
 // Colors
 $black: #121212;
-$white: #FFFFFF;
-$dark_grey: #777777;
-$grey: #E8E8E8;
-$light_grey: #F7F7F7;
-$orange: #F3B11C;
-$red: #FF6680;
-$blue: #66CCFF;
+$white: #fff;
+$dark-grey: #777;
+$grey: #e8e8e8;
+$light-grey: #f7f7f7;
+$orange: #f3b11c;
+$red: #ff6680;
+$blue: #6cf;
 
+// Text Color
 .black {
   color: $black;
 }
 
 .dark-grey {
-  color: $dark_grey;
+  color: $dark-grey;
+}
+
+.blue {
+  color: $blue;
+}
+
+.red {
+  color: $red;
 }
 
 // Alignment
@@ -34,6 +44,20 @@ $blue: #66CCFF;
   top: 50%;
   -webkit-transform: translateY(-50%);
   transform: translateY(-50%);
+}
+
+// Spacer
+.spacer-top {
+  margin-top: 20px;
+}
+
+// Float
+.float-left {
+  float: left;
+}
+
+.float-right {
+  float: right;
 }
 
 // Font

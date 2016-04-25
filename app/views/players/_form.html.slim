@@ -1,5 +1,5 @@
 = form_for player do |f|
-  .row
+  .row.row-spacing
     span.form-label
       | NAME
     span
@@ -7,7 +7,7 @@
       - if @player.errors[:name]
         span.error-msg
           = @player.errors[:name].join(', ')
-  .row
+  .row.row-spacing
     span.form-label
       | ALIAS
     span

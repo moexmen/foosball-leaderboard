@@ -1,24 +1,23 @@
 // Place all the styles related to the matches controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+// scss-lint:disable PropertySortOrder, LeadingZero
 @import 'variables';
 
 .selector {
-  float: right;
   font-size: 12px;
   height: 28px;
-  width: 157px;
-  margin-left: 10px;
+  width: 45%;
+  max-width: 200px;
   color: $black;
   -webkit-appearance: none;
   appearance: none;
 
-  border: 1px solid $dark_grey;
+  border: 1px solid $dark-grey;
   border-radius: 2px;
-  background:url(asset-path('arrow-down.svg')) no-repeat 90%;
+  background: url(asset-path('arrow-down.svg')) no-repeat 95%;
   background-size: 12px;
   padding-left: 8px;
-  margin-bottom: 10px;
 }
 
 .match-tbl {
@@ -28,7 +27,7 @@
 
   th {
     text-align: right;
-    color: $dark_grey;
+    color: $dark-grey;
     font-size: 10px;
     font-weight: 700;
   }
@@ -36,14 +35,6 @@
   tbody {
     tr {
       background: $light-grey;
-
-      td {
-        padding: 7px 0;
-      }
-    }
-
-    .column {
-      width: 32%;
     }
 
     .match-score {
@@ -54,28 +45,25 @@
     }
 
     .role {
-      padding: 10px 7px 0px 7px;
+      padding: 10px 7px 0;
       font-size: 10px;
       font-weight: 900;
       font-family: Lato;
     }
 
     .player-details {
-      padding: 0px 7px 10px 7px;
+      padding: 0 7px 10px;
     }
 
     .thin {
       width: 5px;
     }
-
-    .blue-text {
-      color: $blue;
-    }
-
-    .red-text {
-      color: $red;
-    }
   }
+}
+
+.label {
+  font-size: 15px;
+  letter-spacing: 0.7px;
 }
 
 .red-border {

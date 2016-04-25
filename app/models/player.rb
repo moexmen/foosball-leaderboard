@@ -16,7 +16,6 @@ class Player < ActiveRecord::Base
     player.save
     player.score.destroy
   end
-
 end
 
 

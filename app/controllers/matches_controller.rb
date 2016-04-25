@@ -36,9 +36,9 @@ class MatchesController < ApplicationController
 
     if validate(match_params).empty?
       update_hash = {
-          redGoal: match_params[:redGoal],
-          blueGoal: match_params[:blueGoal],
-          winner: match_params[:winner]
+        redGoal: match_params[:redGoal],
+        blueGoal: match_params[:blueGoal],
+        winner: match_params[:winner]
       }
       update_players_for_match
       @match.update(update_hash)
@@ -61,8 +61,9 @@ class MatchesController < ApplicationController
   end
 
   private
+
   def match_params
-    params.permit(:redAtt, :redDef, :blueAtt, :blueDef, :redGoal, :blueGoal, )
+    params.permit(:redAtt, :redDef, :blueAtt, :blueDef, :redGoal, :blueGoal)
   end
 
   def update_players_for_match

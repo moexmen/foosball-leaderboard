@@ -19,20 +19,18 @@ module MatchValidation
     error
   end
 
-  def check_selected (field)
+  def check_selected(field)
     field.present? ? @blanks.push(true) : @blanks.push(false)
   end
 
-  def check_goal (goal1, goal2)
+  def check_goal(goal1, goal2)
     @goal_check = true if goal1 == 10 && goal2 == 10
     @goal_check = true if goal1 < 10 && goal2 < 10
 
-    if goal1 == 'Score'|| goal2 == 'Score'
-      @goal_check = true
-    end
+    @goal_check = true if goal1 == 'Score' || goal2 == 'Score'
   end
 
-  def check_players (players)
+  def check_players(players)
     players.each_with_index do |p|
       other_players = players.clone
       other_players.delete_at(players.index(p))
@@ -40,5 +38,4 @@ module MatchValidation
       break if @player_check
     end
   end
-
 end

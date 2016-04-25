@@ -1,16 +1,4 @@
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
- * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any styles
- * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
- * file per style scope.
- *
- */
+// scss-lint:disable IdSelector, PropertySortOrder, LeadingZero, SelectorFormat, VendorPrefix
 
 @import url(https://fonts.googleapis.com/css?family=Lato:400,100,300,300italic,400italic,700,900);
 @import 'variables';
@@ -23,14 +11,18 @@
   transition: all 0.3s ease;
 }
 
-body, h1, ul, li {
+body,
+h1,
+ul,
+li {
+  color: $black;
   margin: 0;
   padding: 0;
 }
 
 body {
-  width: 100%;
   height: 100%;
+  width: 100%;
 }
 
 a {
@@ -45,27 +37,27 @@ table {
 
 // Table edit and delete row
 .options {
-  width: 100%;
   margin-bottom: 7px;
+  width: 100%;
 
   tbody {
     tr {
-      font-size: 0;
       background: $grey;
+      font-size: 0;
       text-align: center;
+    }
 
-      td {
-        width: 50%;
-        padding: 7px 0;
-      }
+    td {
+      padding: 7px 0;
+      width: 50%;
     }
   }
 }
 
 //Header
 .header {
-  padding: 12px 0 12px 18px;
   font-size: 0;
+  padding: 12px 0 12px 18px;
 
   #foosball-logo {
     width: 240px;
@@ -73,47 +65,47 @@ table {
 }
 
 .bottom-line {
-  border-bottom: 0.5px solid #BBBBBB;
+  border-bottom: 1px solid $grey;
 }
 
 // Menu bar (Players, Leaderboard & Matches)
 .menu {
+  background: $white;
   height: 40px;
   width: 100%;
-  background: $white;
   text-align: center;
 
-
   ul {
-   list-style-type: none;
+    list-style-type: none;
   }
 
   li {
-   display: inline-block;
-   margin-left: 2%;
-   margin-right: 2%;
-   font-size: 15px;
-   color: $dark_grey;
-   max-height: 100%;
+    color: $dark-grey;
+    display: inline-block;
+    font-size: 15px;
+    margin-left: 2%;
+    margin-right: 2%;
+    max-height: 100%;
 
-   a {
-     text-decoration: none;
-     color: $dark_grey;
-     border-bottom: 0px solid $white;
-   }
+    a {
+      border-bottom: 0 solid $white;
+      color: $dark-grey;
+      text-decoration: none;
+    }
   }
 
-  .active a, a:hover {
-   color: $black;
-   padding: 8px 0;
-   border-bottom: 3px solid $orange;
+  .active a,
+  a:hover {
+    border-bottom: 3px solid $orange;
+    color: $black;
+    padding: 8px 0;
   }
 }
 
 .menu-fixed {
+  position: fixed;
   top: 0;
   z-index: 100;
-  position: fixed;
 }
 
 .filler {
@@ -125,15 +117,15 @@ table {
 
 // Standard page styling
 .page {
-  width: 94%;
   height: 100%;
+  width: 94%;
   margin-left: auto;
   margin-right: auto;
 
   .title {
     font-size: 35px;
     font-weight: 400;
-    padding: 15px 0 10px 0;
+    padding: 15px 0 10px;
   }
 
   .title-bar {
@@ -141,7 +133,7 @@ table {
     height: 72px;
     line-height: 72px;
   }
-  
+
   .btn {
     position: absolute;
     right: 0;
@@ -149,16 +141,16 @@ table {
     line-height: normal;
     vertical-align: middle;
     font: 700 10px Lato;
-    color: $dark_grey;
+    color: $dark-grey;
     letter-spacing: 1.6px;
     border-radius: 3px;
-    border: 2px solid $dark_grey;
-    margin: 24px 0px 0px 0px;
-    padding: 6px 26px 6px 26px;
+    border: 2px solid $dark-grey;
+    margin: 24px 0 0;
+    padding: 6px 26px;
     text-decoration: none;
 
     &:hover {
-      background: $dark_grey;
+      background: $dark-grey;
       color: $white;
     }
   }
@@ -166,13 +158,13 @@ table {
 
 // Credits footer
 .credits {
-  text-align: center;
-  margin-top: 30px;
-  margin-bottom: 10px;
   font-size: 1em;
+  margin-bottom: 10px;
+  margin-top: 30px;
+  text-align: center;
 
   span {
-    color: $dark_grey;
+    color: $dark-grey;
     font-weight: 300;
   }
 
@@ -184,18 +176,22 @@ table {
 
 // Form styling (Add and Edit)
 .form {
-  width: 96%;
   margin-left: auto;
   margin-right: auto;
+  width: 96%;
 
   .row {
-    width: 100%;
+    height: 28px;
     line-height: 28px;
-    margin: 20px 0 0 0;
+    width: 100%;
+  }
+
+  .row-spacing {
+    margin-top: 10px;
   }
 
   .form-label {
-    color: $dark_grey;
+    color: $dark-grey;
     font-size: 15px;
     letter-spacing: 0.7px;
   }
@@ -203,9 +199,9 @@ table {
   .form-text {
     color: $black;
     float: right;
-    border: 1px solid $dark_grey;
-    font-size: 15px;
+    border: 1px solid $dark-grey;
     border-radius: 2px;
+    font-size: 15px;
     height: 25px;
     width: 155px;
   }
@@ -224,7 +220,7 @@ table {
     font-weight: 700;
     letter-spacing: 2.2px;
     padding: 15px 0;
-    margin: 20px 0 0 0;
+    margin: 20px 0 0;
     margin-left: auto;
     margin-right: auto;
   }
@@ -254,23 +250,21 @@ table {
 
 // Icon styling
 .edit-icon {
-  width: 17px;
   cursor: pointer;
+  width: 17px;
 }
 
 .delete-icon {
-  width: 15px;
   cursor: pointer;
+  width: 15px;
 }
 
 // Removes display: block on fields with error
 .field_with_errors {
-  display: inherit;
-
   color: $red;
+  display: inherit;
   float: right;
   font-size: 12px;
-  //padding: 5px 5px 0 0;
 
   .form-text {
     border-color: $red;
