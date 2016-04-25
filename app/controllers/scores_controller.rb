@@ -5,18 +5,16 @@ class ScoresController < ApplicationController
     params[:sort_by] = 'wins' unless params[:sort_by]
 
     @sort_by = params[:sort_by].downcase
-
-    case @sort_by
-      when 'points'
-        @scores = sort_by_points
-      when 'win-ratio'
-        @scores = sort_by_ratio
-      when 'win-streak'
-        @scores = sort_by_streak
-      else
-        @scores = sort_by_wins
-    end
-
+    @scores = case @sort_by
+              when 'points'
+                sort_by_points
+              when 'win-ratio'
+                sort_by_ratio
+              when 'win-streak'
+                sort_by_streak
+              else
+                sort_by_wins
+              end
   end
 
   def sort_by_wins
@@ -38,5 +36,4 @@ class ScoresController < ApplicationController
   def active_tab
     @active = 2
   end
-
 end

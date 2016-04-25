@@ -10,33 +10,33 @@ table.match-tbl
     tr
       - if match.winner=='b'
         td.thin.bg-blue[rowspan="4"]
-        td.role.column.blue-text
+        td.role.blue
           | ATTACK
       - else
         td.thin.bg-red[rowspan="4"]
-        td.role.column.red-text
+        td.role.red
           | ATTACK
-      td.match-score.column[rowspan="4"]
+      td.match-score[rowspan="4"]
         - if match.winner=='b'
-          span.blue-text
+          span.blue
             = match.blueGoal
           | &nbsp;-&nbsp;
-          span.red-text
+          span.red
             = match.redGoal
             |     
         - else
-          span.red-text
+          span.red
             = match.redGoal
           | &nbsp;-&nbsp;
-          span.blue-text
+          span.blue
             = match.blueGoal
             |     
       - if match.winner=='b'
-        td.role.align-right.column.red-text
+        td.role.align-right.red
           | ATTACK
         td.thin.bg-red[rowspan="4"]
       - else
-        td.role.align-right.column.blue-text
+        td.role.align-right.blue
           | ATTACK
         td.thin.bg-blue[rowspan="4"]
     tr
@@ -57,14 +57,14 @@ table.match-tbl
           = player_matches[2].player.alias.upcase
     tr
       - if match.winner=='b'
-        td.role.blue-text
+        td.role.blue
           | DEFENSE
-        td.role.align-right.red-text
+        td.role.align-right.red
           | DEFENSE
       - else
-        td.role.red-text
+        td.role.red
           | DEFENSE
-        td.role.align-right.blue-text
+        td.role.align-right.blue
           | DEFENSE
     tr
       - if match.winner=='b'

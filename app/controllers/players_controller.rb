@@ -52,7 +52,8 @@ class PlayersController < ApplicationController
 		@active = 1
 	end
 
-private
+	private
+
 	def player_params
 		params.require(:player).permit(:name, :alias)
 	end
