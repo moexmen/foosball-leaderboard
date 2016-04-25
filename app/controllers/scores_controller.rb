@@ -9,10 +9,10 @@ class ScoresController < ApplicationController
     case @sort_by
       when 'points'
         @scores = sort_by_points
-      when 'goals'
-        @scores = sort_by_goals
-      when 'pull-ups'
-        @scores = sort_by_pull_ups
+      when 'win-ratio'
+        @scores = sort_by_ratio
+      when 'win-streak'
+        @scores = sort_by_streak
       else
         @scores = sort_by_wins
     end
@@ -27,12 +27,12 @@ class ScoresController < ApplicationController
     Score.includes(:player).sort_by { |s| s.points }.reverse!
   end
 
-  def sort_by_goals
-    Score.includes(:player).sort_by { |s| [s.goals, s.points] }.reverse!
+  def sort_by_ratio
+    Score.includes(:player).sort_by { |s| [s.wRatio, s.points] }.reverse!
   end
 
-  def sort_by_pull_ups
-    Score.includes(:player).sort_by { |s| [s.pullUps, s.points] }.reverse!
+  def sort_by_streak
+    Score.includes(:player).sort_by { |s| [s.win_streak, s.points] }.reverse!
   end
 
   def active_tab
