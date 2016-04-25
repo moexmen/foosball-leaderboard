@@ -1,8 +1,6 @@
 class Match < ActiveRecord::Base
   has_many :player_matches
   has_many :players, through: :player_matches
-  # validates :blueGoal, length: { maximum: 1 }, message: {
-  # validates :redGoal, length: { maximum: 1 }, message: "Red msg"
   attr_accessor :red_att
   attr_accessor :red_def
   attr_accessor :blue_att

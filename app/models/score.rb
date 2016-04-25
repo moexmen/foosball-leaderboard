@@ -1,5 +1,7 @@
 class Score < ActiveRecord::Base
   belongs_to :player
+  before_create :set_defaults if :new_record?
+
   def self.remove_match(match_id, player_match)
     match = Match.find(match_id)
 
@@ -85,6 +87,18 @@ class Score < ActiveRecord::Base
     end
 
     win_streak
+  end
+
+  private
+  def set_defaults
+    self.wins ||= 0
+    self.loses ||= 0
+    self.points ||= 0
+    self.goals ||= 0
+    self.wRatio ||= 0
+    self.pullUps ||= 0
+    self.win_streak ||= 0
+    self.longest_win_streak ||= 0
   end
 
 end

@@ -7,7 +7,7 @@ class Player < ActiveRecord::Base
 
   after_create do
     # generate score record
-    Score.create(wins: 0, loses: 0, points: 0, goals: 0, wRatio: 0, pullUps: 0, win_streak: 0, longest_win_streak: 0, player_id: self.id)
+    self.build_score(player: self).save!
     puts "[SERVER] Generated new score record for player #{self.id}"
   end
 
@@ -18,3 +18,5 @@ class Player < ActiveRecord::Base
   end
 
 end
+
+
