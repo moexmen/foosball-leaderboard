@@ -2,6 +2,7 @@ doctype html
 html
   head
     meta[name="viewport" content="width=device-width, initial-scale=1"]
+    = favicon_link_tag 'favicon.ico'
     title
       | ESTL Foosball
     = stylesheet_link_tag 'application', params[:controller], media: 'all', 'data-turbolinks-track' => true
